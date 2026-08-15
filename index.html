@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NIHAL CYBER CAFE | 2004 Memories</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --xp-blue:#245edb;
+    --crt-green:#33ff33;
+    --glass:rgba(255,255,255,.12);
+    --glass-border:rgba(255,255,255,.22);
+    --font-pixel:'VT323',monospace;
+    --font-main:'Inter',sans-serif;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+}
+
+body{
+    background:#000;
+    color:#fff;
+    font-family:var(--font-main);
+    overflow:hidden;
+    background:
+        radial-gradient(circle at center,#151b35 0%,#050505 70%,#000 100%);
+}
+
+/* CRT */
+.scanlines{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:9999;
+    background:
+        linear-gradient(
+            rgba(18,16,16,0) 50%,
+            rgba(0,0,0,.12) 50%
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,0,0,.025),
+            rgba(0,255,0,.015),
+            rgba(0,0,255,.025)
+        );
+    background-size:100% 4px,4px 100%;
+}
+
+.crt-container{
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    perspective:1200px;
+}
+
+.monitor{
+    width:min(1100px,96vw);
+    height:min(680px,88vh);
+    background:#252525;
+    border:4px solid #383838;
+    border-radius:38px;
+    padding:24px;
+    position:relative;
+    box-shadow:
+        inset 0 0 50px #000,
+        0 45px 100px rgba(0,0,0,.85),
+        0 0 30px rgba(255,255,255,.05);
+    transform:rotateX(2deg);
+    transition:transform .15s ease-out;
+}
+
+.monitor::after{
+    content:"NIHAL • 2004";
+    position:absolute;
+    bottom:7px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#777;
+    font:14px var(--font-pixel);
+    letter-spacing:2px;
+}
+
+.screen{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    position:relative;
+    border:10px solid #111;
+    border-radius:16px;
+    background:#0d1117;
+    box-shadow:inset 0 0 100px #000;
+    display:flex;
+    flex-direction:column;
+}
+
+/* XP BAR */
+.top-bar{
+    height:36px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 9px;
+    background:linear-gradient(
+        to bottom,
+        #0058e4 0%,
+        #3b8cf8 12%,
+        #1e53bd 100%
+    );
+    border-bottom:1px solid #003091;
+}
+
+.title-left{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    min-width:0;
+}
+
+.title-left img{
+    width:17px;
+    height:17px;
+}
+
+.title-left span{
+    font-size:12px;
+    font-weight:600;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.window-controls{
+    display:flex;
+    gap:4px;
+}
+
+.control-btn{
+    width:22px;
+    height:22px;
+    border:1px solid white;
+    border-radius:3px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    font-weight:bold;
+    box-shadow:1px 1px 2px #000;
+}
+
+.min{background:#3b8cf8}
+.close{background:#e81123}
+
+/* DESKTOP */
+.desktop{
+    flex:1;
+    position:relative;
+    overflow:hidden;
+    padding:35px;
+    background:
+        linear-gradient(rgba(4,12,22,.62),rgba(0,0,0,.78)),
+        url("https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1600&q=80")
+        center/cover;
+}
+
+/* icons */
+.icon-grid{
+    position:absolute;
+    top:25px;
+    left:25px;
+    display:grid;
+    grid-template-columns:repeat(2,75px);
+    gap:18px 10px;
+}
+
+.desktop-icon{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+    font-size:11px;
+    text-shadow:1px 1px 3px #000;
+    user-select:none;
+}
+
+.icon-img{
+    width:34px;
+    height:34px;
+    object-fit:contain;
+}
+
+/* BRAND */
+.branding{
+    position:absolute;
+    left:50%;
+    top:46%;
+    transform:translate(-50%,-50%);
+    width:min(90%,760px);
+    text-align:center;
+    animation:flicker 3s infinite;
+}
+
+.estd{
+    color:#aaa;
+    font:24px var(--font-pixel);
+    letter-spacing:2px;
+}
+
+h1{
+    margin:5px 0 15px;
+    font:clamp(42px,7vw,82px) var(--font-pixel);
+    line-height:.9;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    text-shadow:
+        0 0 8px #33ff33,
+        0 0 22px rgba(51,255,51,.5);
+}
+
+.status-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:5px 14px;
+    border-radius:20px;
+    background:#168847;
+    font-size:12px;
+    font-weight:600;
+    box-shadow:0 0 12px rgba(46,204,113,.35);
+}
+
+/* RATE */
+.rate-card{
+    position:absolute;
+    right:28px;
+    top:28px;
+    min-width:180px;
+    padding:13px;
+    background:rgba(0,0,0,.78);
+    border:1px solid var(--crt-green);
+    box-shadow:0 0 15px rgba(51,255,51,.15);
+    color:var(--crt-green);
+    font:18px var(--font-pixel);
+    line-height:1.05;
+}
+
+.rate-title{
+    border-bottom:1px solid var(--crt-green);
+    padding-bottom:5px;
+    margin-bottom:6px;
+}
+
+/* QUOTE */
+.quote-box{
+    position:absolute;
+    left:28px;
+    bottom:28px;
+    width:min(350px,42%);
+    min-height:62px;
+    display:flex;
+    align-items:center;
+    padding:9px 13px;
+    border-left:3px solid var(--crt-green);
+    background:rgba(0,0,0,.4);
+    backdrop-filter:blur(5px);
+    color:#fff;
+    font:19px var(--font-pixel);
+    line-height:1.15;
+    font-style:italic;
+    opacity:.9;
+    transition:
+        opacity .45s ease,
+        transform .45s ease;
+    z-index:10;
+}
+
+.quote-box.fade{
+    opacity:0;
+    transform:translateY(7px);
+}
+
+/* MUSIC PLAYER */
+.player-anchor{
+    position:fixed;
+    left:50%;
+    bottom:18px;
+    transform:translateX(-50%);
+    width:min(650px,92vw);
+    z-index:5000;
+}
+
+.music-player{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:13px 17px;
+    border:1px solid var(--glass-border);
+    border-radius:20px;
+    background:rgba(15,18,28,.72);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.6),
+        inset 0 1px rgba(255,255,255,.08);
+}
+
+.album-art{
+    width:54px;
+    height:54px;
+    flex-shrink:0;
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.25);
+    animation:rotate 10s linear infinite;
+    animation-play-state:paused;
+}
+
+.album-art.playing{
+    animation-play-state:running;
+}
+
+.album-art img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.player-info{
+    flex:1;
+    min-width:0;
+}
+
+.track-name{
+    font-size:13px;
+    font-weight:600;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    margin-bottom:8px;
+}
+
+.player-status{
+    font:14px var(--font-pixel);
+    color:#9cff9c;
+    margin-top:4px;
+}
+
+.progress-container{
+    width:100%;
+    height:5px;
+    border-radius:10px;
+    background:rgba(255,255,255,.13);
+    cursor:pointer;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    border-radius:10px;
+    background:linear-gradient(90deg,#245edb,#33ff33);
+    transition:width .15s linear;
+}
+
+.player-controls{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.btn{
+    width:38px;
+    height:38px;
+    border:0;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.btn:hover{
+    background:rgba(255,255,255,.18);
+    transform:scale(1.08);
+}
+
+.btn:active{
+    transform:scale(.94);
+}
+
+.btn svg{
+    width:21px;
+    height:21px;
+    fill:currentColor;
+}
+
+#play-btn{
+    background:var(--xp-blue);
+}
+
+/* Hidden but active YouTube iframe */
+#youtube-player{
+    position:fixed;
+    width:1px;
+    height:1px;
+    left:-10px;
+    bottom:-10px;
+    opacity:.01;
+    pointer-events:none;
+    border:0;
+}
+
+/* keyboard */
+.keypress-indicator{
+    position:fixed;
+    pointer-events:none;
+    color:var(--crt-green);
+    font:26px var(--font-pixel);
+    text-shadow:0 0 10px var(--crt-green);
+    z-index:10000;
+    animation:fadeUp .65s ease-out forwards;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+    to{
+        opacity:0;
+        transform:translateY(-60px) scale(1.2);
+    }
+}
+
+@keyframes pulse{
+    50%{opacity:.55}
+}
+
+@keyframes flicker{
+    0%,100%{opacity:.98}
+    4%{opacity:.85}
+    7%{opacity:.96}
+    12%{opacity:.9}
+    20%{opacity:1}
+}
+
+@keyframes rotate{
+    from{transform:rotate(0)}
+    to{transform:rotate(360deg)}
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+    body{
+        overflow:hidden;
+    }
+
+    .crt-container{
+        padding:8px;
+    }
+
+    .monitor{
+        width:98vw;
+        height:88vh;
+        padding:9px;
+        border-radius:20px;
+    }
+
+    .screen{
+        border-width:6px;
+        border-radius:10px;
+    }
+
+    .top-bar{
+        height:30px;
+    }
+
+    .title-left span{
+        font-size:10px;
+    }
+
+    .desktop{
+        padding:15px;
+    }
+
+    .icon-grid{
+        top:15px;
+        left:15px;
+        grid-template-columns:repeat(2,60px);
+        gap:12px 4px;
+    }
+
+    .icon-img{
+        width:28px;
+        height:28px;
+    }
+
+    .desktop-icon{
+        font-size:9px;
+    }
+
+    .branding{
+        top:42%;
+        width:95%;
+    }
+
+    .estd{
+        font-size:18px;
+    }
+
+    h1{
+        font-size:42px;
+        letter-spacing:2px;
+    }
+
+    .rate-card{
+        top:15px;
+        right:15px;
+        min-width:135px;
+        padding:9px;
+        font-size:14px;
+    }
+
+    .quote-box{
+        left:15px;
+        right:15px;
+        bottom:105px;
+        width:auto;
+        min-height:50px;
+        font-size:16px;
+    }
+
+    .player-anchor{
+        width:95vw;
+        bottom:8px;
+    }
+
+    .music-player{
+        gap:9px;
+        padding:9px 10px;
+        border-radius:16px;
+    }
+
+    .album-art{
+        display:none;
+    }
+
+    .track-name{
+        font-size:11px;
+    }
+
+    .player-status{
+        font-size:11px;
+    }
+
+    .btn{
+        width:34px;
+        height:34px;
+    }
+
+    .btn svg{
+        width:18px;
+        height:18px;
+    }
+
+    .player-controls{
+        gap:3px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        scroll-behavior:auto!important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="scanlines"></div>
+
+<div class="crt-container">
+
+    <div class="monitor" id="monitor">
+
+        <div class="screen">
+
+            <!-- XP TITLE BAR -->
+            <div class="top-bar">
+
+                <div class="title-left">
+                    <img
+                        src="https://win98icons.alexmeub.com/icons/png/computer_explorer-5.png"
+                        alt="Computer"
+                    >
+                    <span>Internet Explorer - [Nihal Cyber Cafe]</span>
+                </div>
+
+                <div class="window-controls">
+                    <div class="control-btn min">_</div>
+                    <div class="control-btn">□</div>
+                    <div class="control-btn close">×</div>
+                </div>
+
+            </div>
+
+            <!-- DESKTOP -->
+            <div class="desktop">
+
+                <!-- ICONS -->
+                <div class="icon-grid">
+
+                    <div class="desktop-icon">
+                        <img
+                            src="https://win98icons.alexmeub.com/icons/png/msie2-2.png"
+                            class="icon-img"
+                            alt="Internet Explorer"
+                        >
+                        <span>Internet</span>
+                    </div>
+
+                    <div class="desktop-icon">
+                        <img
+                            src="https://win98icons.alexmeub.com/icons/png/joystick-0.png"
+                            class="icon-img"
+                            alt="Games"
+                        >
+                        <span>CS 1.6</span>
+                    </div>
+
+                    <div class="desktop-icon">
+                        <img
+                            src="https://win98icons.alexmeub.com/icons/png/msn_messenger-0.png"
+                            class="icon-img"
+                            alt="Messenger"
+                        >
+                        <span>Messenger</span>
+                    </div>
+
+                    <div class="desktop-icon">
+                        <img
+                            src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-4.png"
+                            class="icon-img"
+                            alt="My Documents"
+                        >
+                        <span>My Songs</span>
+                    </div>
+
+                </div>
+
+                <!-- RATE CARD -->
+                <div class="rate-card">
+
+                    <div class="rate-title">RATES:</div>
+
+                    <div>1 HOUR: ₹20</div>
+                    <div>30 MINS: ₹12</div>
+                    <div>PRINT: ₹5/page</div>
+                    <div>SONG: ₹2</div>
+
+                </div>
+
+                <!-- CENTER -->
+                <div class="branding">
+
+                    <div class="estd">ESTD. 2004</div>
+
+                    <h1>NIHAL<br>CYBER CAFE</h1>
+
+                    <div class="status-badge">
+                        <span>●</span>
+                        SYSTEM ONLINE
+                    </div>
+
+                </div>
+
+                <!-- QUOTES -->
+                <div class="quote-box" id="quote-rotator">
+                    "Bhaiya, time badha do, 5 minute bache hain..."
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- MUSIC PLAYER -->
+
+<div class="player-anchor">
+
+    <div class="music-player">
+
+        <div class="album-art" id="art-container">
+
+            <img
+                src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=200&h=200&fit=crop"
+                alt="Music"
+            >
+
+        </div>
+
+        <div class="player-info">
+
+            <div class="track-name" id="track-title">
+                Connecting to Cyber Cafe Playlist...
+            </div>
+
+            <div class="progress-container" id="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+
+            <div class="player-status" id="player-status">
+                ● READY
+            </div>
+
+        </div>
+
+        <div class="player-controls">
+
+            <button
+                class="btn"
+                id="prev-btn"
+                title="Previous track"
+                aria-label="Previous track"
+            >
+                <svg viewBox="0 0 24 24">
+                    <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+                </svg>
+            </button>
+
+            <button
+                class="btn"
+                id="play-btn"
+                title="Play/Pause"
+                aria-label="Play/Pause"
+            >
+                <svg id="play-icon" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+            </button>
+
+            <button
+                class="btn"
+                id="next-btn"
+                title="Next track"
+                aria-label="Next track"
+            >
+                <svg viewBox="0 0 24 24">
+                    <path d="M6 18l8.5-6L6 6zm9-12h2v12h-2z"/>
+                </svg>
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ACTIVE YOUTUBE PLAYER -->
+<div id="youtube-player"></div>
+
+
+<script>
+/* =========================================================
+   CONFIG
+========================================================= */
+
+const PLAYLIST_ID = "PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy";
+
+
+/* =========================================================
+   QUOTES
+========================================================= */
+
+const quotes = [
+    '"Bhaiya, time badha do, 5 minute bache hain..."',
+    '"Counter-Strike 1.6 — Dust II only!"',
+    '"Yahoo Messenger: Busy"',
+    '"₹20/hr high speed internet..."',
+    '"Bhaiya, Orkut load nahi ho raha!"',
+    '"Headphones counter se milenge."',
+    '"Bluetooth song transfer available here."',
+    '"Scrap kar diya kya?"',
+    '"Bhaiya mouse ka ball nikal gaya!"',
+    '"Ek aur round CS ka!"',
+    '"Dial-up ki awaaz abhi bhi yaad hai..."',
+    '"Internet slow hai, lekin memories fast hain."'
+];
+
+let quoteIndex = 0;
+
+const quoteEl = document.getElementById("quote-rotator");
+
+function changeQuote(){
+
+    quoteEl.classList.add("fade");
+
+    setTimeout(() => {
+
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+
+        quoteEl.textContent = quotes[quoteIndex];
+
+        quoteEl.classList.remove("fade");
+
+    },450);
+}
+
+setInterval(changeQuote,5000);
+
+
+/* =========================================================
+   YOUTUBE PLAYER
+========================================================= */
+
+let player = null;
+let playerReady = false;
+
+const playBtn = document.getElementById("play-btn");
+const playIcon = document.getElementById("play-icon");
+
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
+
+const trackTitle = document.getElementById("track-title");
+const playerStatus = document.getElementById("player-status");
+
+const progressBar = document.getElementById("progress-bar");
+const progressContainer = document.getElementById("progress-container");
+
+const artContainer = document.getElementById("art-container");
+
+
+/* YouTube API callback */
+
+window.onYouTubeIframeAPIReady = function(){
+
+    player = new YT.Player("youtube-player",{
+
+        height:"1",
+        width:"1",
+
+        playerVars:{
+            listType:"playlist",
+            list:PLAYLIST_ID,
+            index:0,
+            playsinline:1,
+            controls:0,
+            rel:0,
+            modestbranding:1
+        },
+
+        events:{
+            onReady:onPlayerReady,
+            onStateChange:onPlayerStateChange,
+            onError:onPlayerError
+        }
+
+    });
+
+};
+
+
+function onPlayerReady(){
+
+    playerReady = true;
+
+    playerStatus.textContent = "● PLAYLIST READY";
+
+    updateTrackInfo();
+
+    setInterval(updateProgress,500);
+
+}
+
+
+/* =========================================================
+   PLAYER STATE
+========================================================= */
+
+function onPlayerStateChange(event){
+
+    if(!playerReady) return;
+
+    switch(event.data){
+
+        case YT.PlayerState.PLAYING:
+
+            playIcon.innerHTML =
+                '<path d="M6 5h4v14H6zm8 0h4v14h-4z"/>';
+
+            artContainer.classList.add("playing");
+
+            playerStatus.textContent = "● PLAYING";
+
+            updateTrackInfo();
+
+            break;
+
+
+        case YT.PlayerState.PAUSED:
+
+            playIcon.innerHTML =
+                '<path d="M8 5v14l11-7z"/>';
+
+            artContainer.classList.remove("playing");
+
+            playerStatus.textContent = "● PAUSED";
+
+            break;
+
+
+        case YT.PlayerState.BUFFERING:
+
+            playerStatus.textContent = "● BUFFERING...";
+
+            break;
+
+
+        case YT.PlayerState.ENDED:
+
+            artContainer.classList.remove("playing");
+
+            playerStatus.textContent = "● NEXT TRACK...";
+
+            setTimeout(() => {
+
+                try{
+                    player.nextVideo();
+                }catch(error){
+                    console.log(error);
+                }
+
+            },500);
+
+            break;
+
+    }
+
+}
+
+
+/* =========================================================
+   TRACK INFORMATION
+========================================================= */
+
+function updateTrackInfo(){
+
+    if(!player || !playerReady) return;
+
+    try{
+
+        const data = player.getVideoData();
+
+        if(data && data.title){
+
+            trackTitle.textContent = data.title;
+
+        }
+
+    }catch(error){
+
+        console.log("Track info unavailable");
+
+    }
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function updateProgress(){
+
+    if(!player || !playerReady) return;
+
+    try{
+
+        const duration = player.getDuration();
+        const current = player.getCurrentTime();
+
+        if(duration > 0){
+
+            progressBar.style.width =
+                ((current / duration) * 100) + "%";
+
+        }
+
+    }catch(error){
+
+        // Ignore temporary YouTube API errors
+
+    }
+
+}
+
+
+/* =========================================================
+   PLAY / PAUSE
+========================================================= */
+
+playBtn.addEventListener("click",function(){
+
+    if(!playerReady){
+
+        playerStatus.textContent = "● CONNECTING...";
+
+        return;
+
+    }
+
+    const state = player.getPlayerState();
+
+    if(state === YT.PlayerState.PLAYING){
+
+        player.pauseVideo();
+
+    }else{
+
+        player.playVideo();
+
+    }
+
+});
+
+
+/* =========================================================
+   NEXT / PREVIOUS
+========================================================= */
+
+nextBtn.addEventListener("click",function(){
+
+    if(!playerReady) return;
+
+    player.nextVideo();
+
+});
+
+
+prevBtn.addEventListener("click",function(){
+
+    if(!playerReady) return;
+
+    player.previousVideo();
+
+});
+
+
+/* =========================================================
+   PROGRESS SEEK
+========================================================= */
+
+progressContainer.addEventListener("click",function(e){
+
+    if(!playerReady) return;
+
+    const rect =
+        progressContainer.getBoundingClientRect();
+
+    const position =
+        (e.clientX - rect.left) / rect.width;
+
+    const duration =
+        player.getDuration();
+
+    if(duration){
+
+        player.seekTo(
+            position * duration,
+            true
+        );
+
+    }
+
+});
+
+
+/* =========================================================
+   YOUTUBE ERRORS
+========================================================= */
+
+function onPlayerError(event){
+
+    console.log("YouTube error:",event.data);
+
+    if(event.data === 150 || event.data === 101){
+
+        trackTitle.textContent =
+            "Track unavailable — try Next ▶";
+
+    }else if(event.data === 100){
+
+        trackTitle.textContent =
+            "Video not found";
+
+    }else{
+
+        trackTitle.textContent =
+            "YouTube playback error";
+
+    }
+
+    playerStatus.textContent = "● ERROR";
+
+}
+
+
+/* =========================================================
+   KEYBOARD EFFECT
+========================================================= */
+
+let audioContext = null;
+
+function playKeySound(){
+
+    try{
+
+        if(!audioContext){
+
+            audioContext =
+                new (window.AudioContext ||
+                window.webkitAudioContext)();
+
+        }
+
+        if(audioContext.state === "suspended"){
+
+            audioContext.resume();
+
+        }
+
+        const oscillator =
+            audioContext.createOscillator();
+
+        const gain =
+            audioContext.createGain();
+
+        oscillator.type = "square";
+
+        oscillator.frequency.setValueAtTime(
+            140,
+            audioContext.currentTime
+        );
+
+        gain.gain.setValueAtTime(
+            .06,
+            audioContext.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            .001,
+            audioContext.currentTime + .08
+        );
+
+        oscillator.connect(gain);
+
+        gain.connect(audioContext.destination);
+
+        oscillator.start();
+
+        oscillator.stop(
+            audioContext.currentTime + .08
+        );
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+
+function createKeyVisual(key){
+
+    const div =
+        document.createElement("div");
+
+    div.className =
+        "keypress-indicator";
+
+    div.style.left =
+        (Math.random() * 75 + 10) + "%";
+
+    div.style.top =
+        (Math.random() * 45 + 20) + "%";
+
+    div.textContent =
+        key.length > 1 ? "[" + key + "]" : key;
+
+    document.body.appendChild(div);
+
+    setTimeout(() => {
+
+        div.remove();
+
+    },650);
+
+}
+
+
+window.addEventListener("keydown",function(e){
+
+    /*
+      Don't create visual spam while user is typing
+      into browser controls.
+    */
+
+    playKeySound();
+
+    createKeyVisual(e.key);
+
+});
+
+
+/* =========================================================
+   MOUSE PARALLAX
+========================================================= */
+
+const monitor =
+    document.getElementById("monitor");
+
+document.addEventListener("mousemove",function(e){
+
+    if(window.innerWidth <= 768) return;
+
+    const x =
+        (e.clientX / window.innerWidth - .5) * 2;
+
+    const y =
+        (e.clientY / window.innerHeight - .5) * 2;
+
+    monitor.style.transform =
+        `rotateX(${2 - y * 1.2}deg)
+         rotateY(${x * 1.2}deg)`;
+
+});
+
+
+document.addEventListener("mouseleave",function(){
+
+    monitor.style.transform =
+        "rotateX(2deg) rotateY(0deg)";
+
+});
+
+
+/* =========================================================
+   DOUBLE CLICK CRT FLASH
+========================================================= */
+
+monitor.addEventListener("dblclick",function(){
+
+    monitor.style.filter =
+        "brightness(1.7)";
+
+    setTimeout(() => {
+
+        monitor.style.filter =
+            "brightness(1)";
+
+    },150);
+
+});
+
+
+/* =========================================================
+   MOBILE RESET
+========================================================= */
+
+window.addEventListener("resize",function(){
+
+    if(window.innerWidth <= 768){
+
+        monitor.style.transform =
+            "rotateX(0deg) rotateY(0deg)";
+
+    }
+
+});
+
+
+/* =========================================================
+   INITIAL STATUS
+========================================================= */
+
+trackTitle.textContent =
+    "Press ▶ to enter the Cyber Cafe";
+
+playerStatus.textContent =
+    "● CONNECTING...";
+
+</script>
+
+
+<!-- YouTube IFrame API -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+</body>
+</html>
