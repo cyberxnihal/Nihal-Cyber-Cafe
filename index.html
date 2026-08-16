@@ -1327,4 +1327,1942 @@ playerStatus.textContent =
 <script src="https://www.youtube.com/iframe_api"></script>
 
 </body>
+
+<!-- =========================================================
+     NIHAL CYBER CAFE — XP INTERACTIVE ADD-ON
+     Paste this BEFORE </html>
+========================================================= -->
+
+<style>
+/* =========================================================
+   XP TASKBAR
+========================================================= */
+
+.xp-taskbar{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    height:42px;
+    z-index:7000;
+    display:flex;
+    align-items:center;
+    background:linear-gradient(
+        to bottom,
+        #3b8df8 0%,
+        #245edb 45%,
+        #1745a5 100%
+    );
+    border-top:2px solid #72adff;
+    box-shadow:0 -3px 12px rgba(0,0,0,.55);
+    font-family:Arial,sans-serif;
+}
+
+.xp-start{
+    height:38px;
+    min-width:105px;
+    padding:0 15px 0 10px;
+    border:0;
+    border-radius:0 18px 18px 0;
+    background:linear-gradient(#64d65b,#168b18);
+    color:#fff;
+    font-weight:bold;
+    font-style:italic;
+    font-size:15px;
+    cursor:pointer;
+    text-shadow:1px 1px 2px #174517;
+    box-shadow:inset 0 1px rgba(255,255,255,.5);
+}
+
+.xp-start:hover{
+    filter:brightness(1.12);
+}
+
+.xp-start-logo{
+    display:inline-block;
+    margin-right:6px;
+    font-size:17px;
+}
+
+.xp-task-buttons{
+    display:flex;
+    align-items:center;
+    gap:3px;
+    margin-left:8px;
+    flex:1;
+    overflow:hidden;
+}
+
+.xp-task-btn{
+    height:31px;
+    min-width:125px;
+    max-width:180px;
+    padding:0 10px;
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:3px;
+    background:rgba(0,35,110,.35);
+    color:white;
+    cursor:pointer;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:left;
+}
+
+.xp-task-btn:hover{
+    background:rgba(255,255,255,.2);
+}
+
+.xp-tray{
+    height:34px;
+    min-width:115px;
+    padding:0 12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    border-left:1px solid #17469d;
+    background:rgba(0,30,100,.28);
+    font-size:12px;
+}
+
+.xp-tray-icons{
+    font-size:13px;
+}
+
+/* =========================================================
+   START MENU
+========================================================= */
+
+.xp-start-menu{
+    position:fixed;
+    left:0;
+    bottom:42px;
+    width:330px;
+    z-index:8000;
+    display:none;
+    background:#fff;
+    color:#111;
+    border:2px solid #245edb;
+    border-radius:6px 6px 0 0;
+    box-shadow:8px -5px 25px rgba(0,0,0,.65);
+    font-family:Arial,sans-serif;
+    overflow:hidden;
+}
+
+.xp-start-menu.active{
+    display:block;
+}
+
+.start-header{
+    height:65px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:8px 14px;
+    background:linear-gradient(#3b8df8,#1e53bd);
+    color:#fff;
+    font-weight:bold;
+}
+
+.start-avatar{
+    width:45px;
+    height:45px;
+    border-radius:5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#eee;
+    color:#245edb;
+    font-size:27px;
+    border:2px solid white;
+}
+
+.start-body{
+    display:flex;
+    min-height:300px;
+}
+
+.start-left{
+    width:55%;
+    padding:7px;
+    background:#fff;
+}
+
+.start-right{
+    width:45%;
+    padding:7px;
+    background:#e9f1ff;
+}
+
+.start-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:9px 7px;
+    border-radius:3px;
+    cursor:pointer;
+    font-size:13px;
+}
+
+.start-item:hover{
+    background:#316ac5;
+    color:#fff;
+}
+
+.start-icon{
+    width:27px;
+    text-align:center;
+    font-size:19px;
+}
+
+.start-footer{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    padding:8px 12px;
+    background:#e8e8e8;
+    border-top:1px solid #bbb;
+}
+
+.start-footer button{
+    border:1px solid #777;
+    border-radius:3px;
+    padding:6px 10px;
+    background:#eee;
+    cursor:pointer;
+}
+
+/* =========================================================
+   XP WINDOWS
+========================================================= */
+
+.fake-window{
+    position:fixed;
+    z-index:7500;
+    width:min(500px,90vw);
+    max-height:75vh;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    display:none;
+    background:#ece9d8;
+    color:#111;
+    border:3px solid #245edb;
+    border-radius:8px 8px 4px 4px;
+    box-shadow:10px 15px 40px rgba(0,0,0,.75);
+    font-family:Arial,sans-serif;
+    overflow:hidden;
+}
+
+.fake-window.active{
+    display:block;
+}
+
+.fake-titlebar{
+    height:31px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6px 0 9px;
+    color:#fff;
+    font-weight:bold;
+    font-size:12px;
+    background:linear-gradient(
+        #3b8cf8,
+        #1450bb
+    );
+}
+
+.fake-title-left{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.fake-controls{
+    display:flex;
+    gap:3px;
+}
+
+.fake-control{
+    width:20px;
+    height:20px;
+    border:1px solid #fff;
+    border-radius:3px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    background:#3d8df7;
+    color:white;
+    font-weight:bold;
+}
+
+.fake-close{
+    background:#e81123;
+}
+
+.fake-content{
+    padding:15px;
+    max-height:calc(75vh - 31px);
+    overflow:auto;
+}
+
+/* =========================================================
+   INTERNET EXPLORER
+========================================================= */
+
+.ie-toolbar{
+    background:#ddd;
+    border-bottom:1px solid #aaa;
+    padding:7px;
+}
+
+.ie-address{
+    display:flex;
+    gap:5px;
+}
+
+.ie-address input{
+    flex:1;
+    height:27px;
+    border:1px solid #888;
+    padding:4px 7px;
+}
+
+.ie-address button{
+    height:27px;
+    padding:0 12px;
+    cursor:pointer;
+}
+
+.ie-page{
+    min-height:300px;
+    padding:25px;
+    background:#fff;
+    color:#111;
+}
+
+.ie-page h2{
+    color:#245edb;
+    margin-bottom:10px;
+}
+
+.ie-page hr{
+    margin:15px 0;
+}
+
+/* =========================================================
+   MY COMPUTER
+========================================================= */
+
+.computer-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.computer-item{
+    padding:13px 8px;
+    text-align:center;
+    border:1px solid transparent;
+    cursor:pointer;
+    border-radius:4px;
+}
+
+.computer-item:hover{
+    background:#cce4ff;
+    border-color:#6ba3df;
+}
+
+.computer-item .big-icon{
+    display:block;
+    font-size:37px;
+    margin-bottom:6px;
+}
+
+/* =========================================================
+   MESSENGER
+========================================================= */
+
+.messenger{
+    background:#f1f1f1;
+    border:1px solid #999;
+}
+
+.messenger-head{
+    padding:12px;
+    background:#245edb;
+    color:#fff;
+    font-weight:bold;
+}
+
+.messenger-user{
+    padding:12px;
+    border-bottom:1px solid #ccc;
+    background:#fff;
+}
+
+.online-dot{
+    display:inline-block;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#18b928;
+    margin-right:6px;
+}
+
+.chat-area{
+    height:170px;
+    overflow:auto;
+    padding:10px;
+    background:#fff;
+}
+
+.chat-msg{
+    margin:7px 0;
+    padding:7px 9px;
+    border-radius:5px;
+    background:#e6efff;
+    font-size:13px;
+}
+
+.chat-input{
+    display:flex;
+    padding:8px;
+    gap:5px;
+}
+
+.chat-input input{
+    flex:1;
+    padding:7px;
+}
+
+/* =========================================================
+   MY SONGS
+========================================================= */
+
+.song-list{
+    list-style:none;
+}
+
+.song-list li{
+    padding:10px;
+    border-bottom:1px solid #ccc;
+    cursor:pointer;
+}
+
+.song-list li:hover{
+    background:#cce4ff;
+}
+
+/* =========================================================
+   CS 1.6
+========================================================= */
+
+.cs-window{
+    background:#171717;
+    color:#fff;
+    text-align:center;
+}
+
+.cs-logo{
+    font-size:42px;
+    font-weight:bold;
+    letter-spacing:4px;
+    color:#e7a82c;
+    text-shadow:2px 2px #000;
+    margin:15px 0;
+}
+
+.cs-menu-button{
+    width:80%;
+    margin:7px auto;
+    padding:12px;
+    border:1px solid #777;
+    background:linear-gradient(#555,#222);
+    cursor:pointer;
+}
+
+.cs-menu-button:hover{
+    background:linear-gradient(#777,#333);
+}
+
+/* =========================================================
+   BILLING
+========================================================= */
+
+.receipt{
+    background:#fff;
+    border:1px dashed #444;
+    padding:18px;
+    font-family:"Courier New",monospace;
+    color:#111;
+}
+
+.receipt-title{
+    text-align:center;
+    font-weight:bold;
+    font-size:18px;
+    margin-bottom:15px;
+}
+
+.receipt-line{
+    display:flex;
+    justify-content:space-between;
+    margin:7px 0;
+}
+
+.receipt-total{
+    border-top:1px dashed #111;
+    margin-top:10px;
+    padding-top:10px;
+    font-weight:bold;
+    font-size:18px;
+}
+
+/* =========================================================
+   SESSION TIMER
+========================================================= */
+
+.session-panel{
+    background:#111;
+    color:#33ff33;
+    padding:18px;
+    border:2px solid #33ff33;
+    font-family:"Courier New",monospace;
+    text-align:center;
+}
+
+.session-time{
+    font-size:32px;
+    margin:8px 0;
+}
+
+/* =========================================================
+   GUEST BOOK
+========================================================= */
+
+.guest-input{
+    width:100%;
+    padding:9px;
+    margin-bottom:8px;
+    border:1px solid #999;
+}
+
+.guest-button{
+    padding:8px 15px;
+    border:1px solid #777;
+    background:#eee;
+    cursor:pointer;
+}
+
+.guest-messages{
+    margin-top:15px;
+    max-height:220px;
+    overflow:auto;
+}
+
+.guest-message{
+    padding:9px;
+    margin-bottom:7px;
+    background:#e8f0ff;
+    border-left:4px solid #245edb;
+}
+
+/* =========================================================
+   NOTIFICATION
+========================================================= */
+
+.xp-notification{
+    position:fixed;
+    right:18px;
+    bottom:58px;
+    z-index:9500;
+    width:290px;
+    padding:12px;
+    display:none;
+    background:#fff;
+    color:#111;
+    border:2px solid #245edb;
+    border-radius:5px;
+    box-shadow:5px 5px 20px #000;
+    font-family:Arial,sans-serif;
+}
+
+.xp-notification.show{
+    display:block;
+    animation:xpNotify .25s ease-out;
+}
+
+@keyframes xpNotify{
+    from{
+        transform:translateY(20px);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:768px){
+
+    .xp-taskbar{
+        height:38px;
+    }
+
+    .xp-start{
+        min-width:78px;
+        font-size:12px;
+        padding:0 9px;
+    }
+
+    .xp-task-btn{
+        display:none;
+    }
+
+    .xp-tray{
+        min-width:90px;
+        font-size:10px;
+    }
+
+    .xp-start-menu{
+        width:290px;
+    }
+
+    .fake-window{
+        width:92vw;
+        max-height:70vh;
+    }
+
+    .computer-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+</style>
+
+
+<!-- =========================================================
+     XP TASKBAR
+========================================================= -->
+
+<div class="xp-taskbar">
+
+    <button class="xp-start" id="xpStartButton">
+        <span class="xp-start-logo">🪟</span>
+        Start
+    </button>
+
+    <div class="xp-task-buttons">
+
+        <button class="xp-task-btn" onclick="openXPWindow('internetWindow')">
+            🌐 Internet Explorer
+        </button>
+
+        <button class="xp-task-btn" onclick="openXPWindow('computerWindow')">
+            💻 My Computer
+        </button>
+
+        <button class="xp-task-btn" onclick="openXPWindow('musicWindow')">
+            🎵 My Songs
+        </button>
+
+    </div>
+
+    <div class="xp-tray">
+        <span class="xp-tray-icons">🔊 📶</span>
+        <span id="xpClock">00:00</span>
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     START MENU
+========================================================= -->
+
+<div class="xp-start-menu" id="xpStartMenu">
+
+    <div class="start-header">
+
+        <div class="start-avatar">💻</div>
+
+        <div>
+            <div>NIHAL</div>
+            <small>Cyber Cafe User</small>
+        </div>
+
+    </div>
+
+    <div class="start-body">
+
+        <div class="start-left">
+
+            <div class="start-item"
+                 onclick="openXPWindow('internetWindow');closeStartMenu();">
+                <span class="start-icon">🌐</span>
+                Internet Explorer
+            </div>
+
+            <div class="start-item"
+                 onclick="openXPWindow('computerWindow');closeStartMenu();">
+                <span class="start-icon">💻</span>
+                My Computer
+            </div>
+
+            <div class="start-item"
+                 onclick="openXPWindow('musicWindow');closeStartMenu();">
+                <span class="start-icon">🎵</span>
+                My Songs
+            </div>
+
+            <div class="start-item"
+                 onclick="openXPWindow('messengerWindow');closeStartMenu();">
+                <span class="start-icon">💬</span>
+                Messenger
+            </div>
+
+            <div class="start-item"
+                 onclick="openXPWindow('guestWindow');closeStartMenu();">
+                <span class="start-icon">📖</span>
+                Guest Book
+            </div>
+
+        </div>
+
+        <div class="start-right">
+
+            <div class="start-item"
+                 onclick="openXPWindow('sessionWindow');closeStartMenu();">
+                <span class="start-icon">⏱️</span>
+                Session
+            </div>
+
+            <div class="start-item"
+                 onclick="openXPWindow('billingWindow');closeStartMenu();">
+                <span class="start-icon">🧾</span>
+                Billing
+            </div>
+
+            <div class="start-item"
+                 onclick="openXPWindow('csWindow');closeStartMenu();">
+                <span class="start-icon">🎮</span>
+                CS 1.6
+            </div>
+
+            <div class="start-item"
+                 onclick="showXPNotification('Welcome to Nihal Cyber Cafe!');closeStartMenu();">
+                <span class="start-icon">📢</span>
+                Welcome
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="start-footer">
+
+        <button onclick="showXPNotification('Log Off: Guest session ended.')">
+            🔓 Log Off
+        </button>
+
+        <button onclick="showXPNotification('This is a nostalgia simulator 😄')">
+            ⏻ Shut Down
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     INTERNET EXPLORER WINDOW
+========================================================= -->
+
+<div class="fake-window" id="internetWindow">
+
+    <div class="fake-titlebar">
+
+        <div class="fake-title-left">
+            🌐 Internet Explorer
+        </div>
+
+        <div class="fake-controls">
+            <div class="fake-control"
+                 onclick="minimizeXPWindow('internetWindow')">_</div>
+
+            <div class="fake-control fake-close"
+                 onclick="closeXPWindow('internetWindow')">×</div>
+        </div>
+
+    </div>
+
+    <div class="ie-toolbar">
+
+        <div class="ie-address">
+
+            <input
+                id="ieAddress"
+                value="http://www.nihalcybercafe.com"
+            >
+
+            <button onclick="fakeInternetSearch()">
+                Go
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="ie-page" id="iePage">
+
+        <h2>NIHAL CYBER CAFE</h2>
+
+        <p>
+            Welcome to the Internet!
+        </p>
+
+        <hr>
+
+        <p>
+            🖥️ High Speed Internet
+        </p>
+
+        <p>
+            🎮 Counter-Strike 1.6
+        </p>
+
+        <p>
+            🎵 Song Download & Transfer
+        </p>
+
+        <p>
+            💬 Yahoo / MSN Messenger
+        </p>
+
+        <p>
+            🖨️ Printing Available
+        </p>
+
+        <hr>
+
+        <b>
+            "Internet slow hai, lekin memories fast hain."
+        </b>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MY COMPUTER WINDOW
+========================================================= -->
+
+<div class="fake-window" id="computerWindow">
+
+    <div class="fake-titlebar">
+
+        <div class="fake-title-left">
+            💻 My Computer
+        </div>
+
+        <div class="fake-controls">
+
+            <div class="fake-control"
+                 onclick="minimizeXPWindow('computerWindow')">
+                _
+            </div>
+
+            <div class="fake-control fake-close"
+                 onclick="closeXPWindow('computerWindow')">
+                ×
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="fake-content">
+
+        <h3>My Computer</h3>
+
+        <br>
+
+        <div class="computer-grid">
+
+            <div class="computer-item"
+                 onclick="showXPNotification('Local Disk (C:) opened.')">
+                <span class="big-icon">💽</span>
+                Local Disk (C:)
+            </div>
+
+            <div class="computer-item"
+                 onclick="openXPWindow('musicWindow')">
+                <span class="big-icon">🎵</span>
+                My Music
+            </div>
+
+            <div class="computer-item"
+                 onclick="openXPWindow('guestWindow')">
+                <span class="big-icon">📁</span>
+                Documents
+            </div>
+
+            <div class="computer-item"
+                 onclick="openXPWindow('csWindow')">
+                <span class="big-icon">🎮</span>
+                Games
+            </div>
+
+            <div class="computer-item"
+                 onclick="showXPNotification('3 photos found in My Pictures.')">
+                <span class="big-icon">🖼️</span>
+                My Pictures
+            </div>
+
+            <div class="computer-item"
+                 onclick="showXPNotification('No new hardware detected.')">
+                <span class="big-icon">🖨️</span>
+                Printers
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MY SONGS WINDOW
+========================================================= -->
+
+<div class="fake-window" id="musicWindow">
+
+    <div class="fake-titlebar">
+
+        <div class="fake-title-left">
+            🎵 My Songs
+        </div>
+
+        <div class="fake-controls">
+
+            <div class="fake-control"
+                 onclick="minimizeXPWindow('musicWindow')">
+                _
+            </div>
+
+            <div class="fake-control fake-close"
+                 onclick="closeXPWindow('musicWindow')">
+                ×
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="fake-content">
+
+        <h3>My Music — MP3 Collection</h3>
+
+        <br>
+
+        <ul class="song-list">
+
+            <li onclick="playMainPlaylist();">
+                ▶ Open Cyber Cafe Playlist
+            </li>
+
+            <li onclick="showXPNotification('Song queued.')">
+                🎵 Old School Collection.mp3
+            </li>
+
+            <li onclick="showXPNotification('Song queued.')">
+                🎵 Memories_2004.mp3
+            </li>
+
+            <li onclick="showXPNotification('Song queued.')">
+                🎵 Cyber_Cafe_Nights.mp3
+            </li>
+
+            <li onclick="showXPNotification('Song queued.')">
+                🎵 Internet_Days.mp3
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MESSENGER WINDOW
+========================================================= -->
+
+<div class="fake-window" id="messengerWindow">
+
+    <div class="fake-titlebar">
+
+        <div class="fake-title-left">
+            💬 Messenger
+        </div>
+
+        <div class="fake-controls">
+
+            <div class="fake-control"
+                 onclick="minimizeXPWindow('messengerWindow')">
+                _
+            </div>
+
+            <div class="fake-control fake-close"
+                 onclick="closeXPWindow('messengerWindow')">
+                ×
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="fake-content">
+
+        <div class="messenger">
+
+            <div class="messenger-head">
+                NIHAL Messenger
+            </div>
+
+            <div class="messenger-user">
+                <span class="online-dot"></span>
+                Jax — Online
+            </div>
+
+            <div class="chat-area" id="chatArea">
+
+                <div class="chat-msg">
+                    <b>Jax:</b> Bhai CS khelega?
+                </div>
+
+                <div class="chat-msg">
+                    <b>Nihal:</b> Haan, Dust II 😎
+                </div>
+
+                <div class="chat-msg">
+                    <b>Jax:</b> Server ready!
+                </div>
+
+            </div>
+
+            <div class="chat-input">
+
+                <input
+                    id="chatInput"
+                    placeholder="Type a message..."
+                >
+
+                <button onclick="sendChatMessage()">
+                    Send
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     CS 1.6 WINDOW
+========================================================= -->
+
+<div class="fake-window" id="csWindow">
+
+    <div class="fake-titlebar">
+
+        <div class="fake-title-left">
+            🎮 Counter-Strike 1.6
+        </div>
+
+        <div class="fake-controls">
+
+            <div class="fake-control"
+                 onclick="minimizeXPWindow('csWindow')">
+                _
+            </div>
+
+            <div class="fake-control fake-close"
+                 onclick="closeXPWindow('csWindow')">
+                ×
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="fake-content cs-window">
+
+        <div class="cs-logo">
+            COUNTER-STRIKE
+        </div>
+
+        <p>1.6 — CYBER CAFE EDITION</p>
+
+        <br>
+
+        <div class="cs-menu-button"
+             onclick="showXPNotification('Searching for LAN servers...')">
+            FIND SERVERS
+        </div>
+
+        <div class="cs-menu-button"
+             onclick="showXPNotification('Dust II selected!')">
+            DUST II
+        </div>
+
+        <div class="cs-menu-button"
+             onclick="showXPNotification('New game started!')">
+            NEW GAME
+        </div>
+
+        <div class="cs-menu-button"
+             onclick="closeXPWindow('csWindow')">
+            EXIT
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     SESSION WINDOW
+========================================================= -->
+
+<div class="fake-window" id="sessionWindow">
+
+    <div class="fake-titlebar">
+
+        <div class="fake-title-left">
+            ⏱️ Cyber Cafe Session
+        </div>
+
+        <div class="fake-controls">
+
+            <div class="fake-control"
+                 onclick="minimizeXPWindow('sessionWindow')">
+                _
+            </div>
+
+            <div class="fake-control fake-close"
+                 onclick="closeXPWindow('sessionWindow')">
+                ×
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="fake-content">
+
+        <div class="session-panel">
+
+            <div>
+                COMPUTER NO. 04
+            </div>
+
+            <div class="session-time" id="sessionTime">
+                00:00:00
+            </div>
+
+            <div>
+                SESSION ACTIVE
+            </div>
+
+            <br>
+
+            <div>
+                RATE: ₹20 / HOUR
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     BILLING WINDOW
+========================================================= -->
+
+<div class="fake-window" id="billingWindow">
+
+    <div class="fake-titlebar">
+
+        <div class="fake-title-left">
+            🧾 Cyber Cafe Billing
+        </div>
+
+        <div class="fake-controls">
+
+            <div class="fake-control"
+                 onclick="minimizeXPWindow('billingWindow')">
+                _
+            </div>
+
+            <div class="fake-control fake-close"
+                 onclick="closeXPWindow('billingWindow')">
+                ×
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="fake-content">
+
+        <div class="receipt">
+
+            <div class="receipt-title">
+                NIHAL CYBER CAFE
+            </div>
+
+            <div style="text-align:center;">
+                ESTD. 2004
+            </div>
+
+            <br>
+
+            <div class="receipt-line">
+                <span>Computer</span>
+                <span>04</span>
+            </div>
+
+            <div class="receipt-line">
+                <span>Internet</span>
+                <span>₹20</span>
+            </div>
+
+            <div class="receipt-line">
+                <span>Print</span>
+                <span>₹10</span>
+            </div>
+
+            <div class="receipt-line">
+                <span>Songs</span>
+                <span>₹6</span>
+            </div>
+
+            <div class="receipt-total">
+                <div class="receipt-line">
+                    <span>TOTAL</span>
+                    <span>₹36</span>
+                </div>
+            </div>
+
+            <br>
+
+            <div style="text-align:center;">
+                THANK YOU!
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     GUEST BOOK WINDOW
+========================================================= -->
+
+<div class="fake-window" id="guestWindow">
+
+    <div class="fake-titlebar">
+
+        <div class="fake-title-left">
+            📖 Guest Book
+        </div>
+
+        <div class="fake-controls">
+
+            <div class="fake-control"
+                 onclick="minimizeXPWindow('guestWindow')">
+                _
+            </div>
+
+            <div class="fake-control fake-close"
+                 onclick="closeXPWindow('guestWindow')">
+                ×
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="fake-content">
+
+        <h3>NIHAL CYBER CAFE — Guest Book</h3>
+
+        <br>
+
+        <input
+            class="guest-input"
+            id="guestName"
+            placeholder="Your name"
+        >
+
+        <input
+            class="guest-input"
+            id="guestMessage"
+            placeholder="Write a message..."
+        >
+
+        <button
+            class="guest-button"
+            onclick="addGuestMessage()"
+        >
+            Sign Guest Book
+        </button>
+
+        <div
+            class="guest-messages"
+            id="guestMessages"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     XP NOTIFICATION
+========================================================= -->
+
+<div class="xp-notification" id="xpNotification">
+
+    <b>NIHAL CYBER CAFE</b>
+
+    <div
+        id="xpNotificationText"
+        style="margin-top:6px;"
+    >
+        Welcome!
+    </div>
+
+</div>
+
+
+<script>
+/* =========================================================
+   XP ADD-ON JAVASCRIPT
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   START MENU
+--------------------------------------------------------- */
+
+const xpStartButton =
+    document.getElementById("xpStartButton");
+
+const xpStartMenu =
+    document.getElementById("xpStartMenu");
+
+
+xpStartButton.addEventListener("click",function(e){
+
+    e.stopPropagation();
+
+    xpStartMenu.classList.toggle("active");
+
+});
+
+
+function closeStartMenu(){
+
+    xpStartMenu.classList.remove("active");
+
+}
+
+
+document.addEventListener("click",function(e){
+
+    if(
+        !xpStartMenu.contains(e.target) &&
+        e.target !== xpStartButton
+    ){
+
+        closeStartMenu();
+
+    }
+
+});
+
+
+/* ---------------------------------------------------------
+   WINDOW SYSTEM
+--------------------------------------------------------- */
+
+function openXPWindow(id){
+
+    const win =
+        document.getElementById(id);
+
+    if(!win) return;
+
+    win.classList.add("active");
+
+}
+
+
+function closeXPWindow(id){
+
+    const win =
+        document.getElementById(id);
+
+    if(!win) return;
+
+    win.classList.remove("active");
+
+}
+
+
+function minimizeXPWindow(id){
+
+    closeXPWindow(id);
+
+}
+
+
+/* ---------------------------------------------------------
+   CLOCK
+--------------------------------------------------------- */
+
+function updateXPClock(){
+
+    const now = new Date();
+
+    let hours = now.getHours();
+
+    let minutes =
+        String(now.getMinutes()).padStart(2,"0");
+
+    let seconds =
+        String(now.getSeconds()).padStart(2,"0");
+
+    const ampm =
+        hours >= 12 ? "PM" : "AM";
+
+    hours =
+        hours % 12 || 12;
+
+    document.getElementById("xpClock").textContent =
+        `${String(hours).padStart(2,"0")}:${minutes}:${seconds} ${ampm}`;
+
+}
+
+
+setInterval(updateXPClock,1000);
+
+updateXPClock();
+
+
+/* ---------------------------------------------------------
+   SESSION TIMER
+--------------------------------------------------------- */
+
+let sessionSeconds = 0;
+
+
+function updateSessionTimer(){
+
+    sessionSeconds++;
+
+    const hours =
+        Math.floor(sessionSeconds / 3600);
+
+    const minutes =
+        Math.floor((sessionSeconds % 3600) / 60);
+
+    const seconds =
+        sessionSeconds % 60;
+
+    const output =
+        String(hours).padStart(2,"0") +
+        ":" +
+        String(minutes).padStart(2,"0") +
+        ":" +
+        String(seconds).padStart(2,"0");
+
+    const el =
+        document.getElementById("sessionTime");
+
+    if(el){
+
+        el.textContent = output;
+
+    }
+
+}
+
+
+setInterval(updateSessionTimer,1000);
+
+
+/* ---------------------------------------------------------
+   NOTIFICATION
+--------------------------------------------------------- */
+
+let notificationTimer;
+
+
+function showXPNotification(message){
+
+    const box =
+        document.getElementById("xpNotification");
+
+    const text =
+        document.getElementById("xpNotificationText");
+
+    text.textContent = message;
+
+    box.classList.add("show");
+
+    clearTimeout(notificationTimer);
+
+    notificationTimer =
+        setTimeout(function(){
+
+            box.classList.remove("show");
+
+        },3500);
+
+}
+
+
+/* ---------------------------------------------------------
+   INTERNET EXPLORER
+--------------------------------------------------------- */
+
+function fakeInternetSearch(){
+
+    const address =
+        document.getElementById("ieAddress").value;
+
+    const page =
+        document.getElementById("iePage");
+
+    page.innerHTML = `
+
+        <h2>Internet Explorer</h2>
+
+        <p>
+            Connecting to:
+            <b>${escapeHTML(address)}</b>
+        </p>
+
+        <hr>
+
+        <h3>NIHAL SEARCH</h3>
+
+        <p>
+            Searching the 2004 Internet...
+        </p>
+
+        <br>
+
+        <p>
+            ☕ Cyber Cafe connection established.
+        </p>
+
+        <p>
+            📡 Speed: "Bhaiya jitni mil rahi hai utni hi hai."
+        </p>
+
+        <br>
+
+        <button
+            onclick="showXPNotification('Page loaded successfully!')"
+        >
+            OK
+        </button>
+
+    `;
+
+}
+
+
+function escapeHTML(text){
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
+
+
+/* ---------------------------------------------------------
+   MESSENGER
+--------------------------------------------------------- */
+
+function sendChatMessage(){
+
+    const input =
+        document.getElementById("chatInput");
+
+    const area =
+        document.getElementById("chatArea");
+
+    const message =
+        input.value.trim();
+
+    if(!message) return;
+
+    const msg =
+        document.createElement("div");
+
+    msg.className =
+        "chat-msg";
+
+    msg.innerHTML =
+        "<b>Nihal:</b> " +
+        escapeHTML(message);
+
+    area.appendChild(msg);
+
+    input.value = "";
+
+    area.scrollTop =
+        area.scrollHeight;
+
+}
+
+
+document.getElementById("chatInput")
+.addEventListener("keydown",function(e){
+
+    if(e.key === "Enter"){
+
+        sendChatMessage();
+
+    }
+
+});
+
+
+/* ---------------------------------------------------------
+   MAIN MUSIC PLAYER CONNECTOR
+--------------------------------------------------------- */
+
+function playMainPlaylist(){
+
+    closeXPWindow("musicWindow");
+
+    if(
+        typeof player !== "undefined" &&
+        player &&
+        typeof player.playVideo === "function"
+    ){
+
+        player.playVideo();
+
+        showXPNotification(
+            "Cyber Cafe Playlist started 🎵"
+        );
+
+    }else{
+
+        showXPNotification(
+            "Music player is still connecting..."
+        );
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   GUEST BOOK
+--------------------------------------------------------- */
+
+function loadGuestMessages(){
+
+    const saved =
+        localStorage.getItem(
+            "nihalCyberCafeGuestBook"
+        );
+
+    if(!saved) return;
+
+    const messages =
+        JSON.parse(saved);
+
+    const container =
+        document.getElementById("guestMessages");
+
+    container.innerHTML = "";
+
+    messages.forEach(function(item){
+
+        renderGuestMessage(
+            item.name,
+            item.message
+        );
+
+    });
+
+}
+
+
+function renderGuestMessage(name,message){
+
+    const container =
+        document.getElementById("guestMessages");
+
+    const div =
+        document.createElement("div");
+
+    div.className =
+        "guest-message";
+
+    div.innerHTML =
+        "<b>" +
+        escapeHTML(name) +
+        "</b><br>" +
+        escapeHTML(message);
+
+    container.prepend(div);
+
+}
+
+
+function addGuestMessage(){
+
+    const nameInput =
+        document.getElementById("guestName");
+
+    const messageInput =
+        document.getElementById("guestMessage");
+
+    const name =
+        nameInput.value.trim();
+
+    const message =
+        messageInput.value.trim();
+
+    if(!name || !message){
+
+        showXPNotification(
+            "Please enter your name and message."
+        );
+
+        return;
+
+    }
+
+    const saved =
+        localStorage.getItem(
+            "nihalCyberCafeGuestBook"
+        );
+
+    const messages =
+        saved ? JSON.parse(saved) : [];
+
+    messages.push({
+        name:name,
+        message:message,
+        time:Date.now()
+    });
+
+    localStorage.setItem(
+        "nihalCyberCafeGuestBook",
+        JSON.stringify(messages)
+    );
+
+    renderGuestMessage(
+        name,
+        message
+    );
+
+    nameInput.value = "";
+    messageInput.value = "";
+
+    showXPNotification(
+        "Your message was added to the Guest Book!"
+    );
+
+}
+
+
+loadGuestMessages();
+
+
+/* ---------------------------------------------------------
+   DESKTOP ICON CONNECTION
+--------------------------------------------------------- */
+
+(function connectDesktopIcons(){
+
+    const icons =
+        document.querySelectorAll(".desktop-icon");
+
+    if(icons.length < 4) return;
+
+    /*
+      Existing order:
+      1 Internet
+      2 CS 1.6
+      3 Messenger
+      4 My Songs
+    */
+
+    icons[0].style.cursor = "pointer";
+    icons[1].style.cursor = "pointer";
+    icons[2].style.cursor = "pointer";
+    icons[3].style.cursor = "pointer";
+
+
+    icons[0].addEventListener("dblclick",function(){
+
+        openXPWindow("internetWindow");
+
+    });
+
+
+    icons[1].addEventListener("dblclick",function(){
+
+        openXPWindow("csWindow");
+
+    });
+
+
+    icons[2].addEventListener("dblclick",function(){
+
+        openXPWindow("messengerWindow");
+
+    });
+
+
+    icons[3].addEventListener("dblclick",function(){
+
+        openXPWindow("musicWindow");
+
+    });
+
+})();
+
+
+/* ---------------------------------------------------------
+   KEYBOARD SHORTCUTS
+--------------------------------------------------------- */
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key === "Escape"){
+
+        document
+        .querySelectorAll(".fake-window.active")
+        .forEach(function(win){
+
+            win.classList.remove("active");
+
+        });
+
+        closeStartMenu();
+
+    }
+
+
+    if(e.key === "F1"){
+
+        e.preventDefault();
+
+        openXPWindow("internetWindow");
+
+    }
+
+
+    if(e.key === "F2"){
+
+        e.preventDefault();
+
+        openXPWindow("musicWindow");
+
+    }
+
+
+    if(e.key === "F3"){
+
+        e.preventDefault();
+
+        openXPWindow("csWindow");
+
+    }
+
+});
+
+
+/* ---------------------------------------------------------
+   RANDOM CYBER CAFE NOTIFICATIONS
+--------------------------------------------------------- */
+
+setTimeout(function(){
+
+    showXPNotification(
+        "Welcome to NIHAL CYBER CAFE — ESTD. 2004 🖥️"
+    );
+
+},2500);
+
+
+setTimeout(function(){
+
+    showXPNotification(
+        "Tip: Double-click the desktop icons."
+    );
+
+},9000);
+
+
+/* ---------------------------------------------------------
+   DOUBLE CLICK TASKBAR CLOCK
+--------------------------------------------------------- */
+
+document
+.getElementById("xpClock")
+.addEventListener("dblclick",function(){
+
+    showXPNotification(
+        "Date & Time: " +
+        new Date().toLocaleDateString("en-IN")
+    );
+
+});
+
+
+/* ---------------------------------------------------------
+   INITIAL STATUS
+--------------------------------------------------------- */
+
+console.log(
+    "NIHAL CYBER CAFE XP ADD-ON LOADED ✓"
+);
+
+</script>
+
 </html>
