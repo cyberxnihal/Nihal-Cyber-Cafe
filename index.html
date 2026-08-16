@@ -2,24 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>NIHAL CYBER CAFE | 2004 Memories</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=VT323&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
-    --xp-blue:#245edb;
-    --crt-green:#33ff33;
-    --glass:rgba(255,255,255,.12);
-    --glass-border:rgba(255,255,255,.22);
-    --font-pixel:'VT323',monospace;
-    --font-main:'Inter',sans-serif;
+    --blue:#245edb;
+    --green:#33ff33;
+    --dark:#050505;
+    --glass:rgba(15,18,28,.82);
+    --pixel:'VT323',monospace;
+    --main:'Inter',sans-serif;
 }
 
 *{
@@ -35,22 +34,12 @@ html,body{
 
 body{
     background:#000;
-    color:#fff;
-    font-family:var(--font-main);
+    color:white;
+    font-family:var(--main);
     overflow:hidden;
-
-    background:
-        radial-gradient(
-            circle at center,
-            #151b35 0%,
-            #050505 70%,
-            #000 100%
-        );
 }
 
-/* =========================
-   CRT SCANLINES
-========================= */
+/* CRT */
 
 .scanlines{
     position:fixed;
@@ -59,33 +48,31 @@ body{
     z-index:9999;
 
     background:
-        linear-gradient(
-            rgba(18,16,16,0) 50%,
-            rgba(0,0,0,.12) 50%
-        ),
-        linear-gradient(
-            90deg,
-            rgba(255,0,0,.025),
-            rgba(0,255,0,.015),
-            rgba(0,0,255,.025)
-        );
+    linear-gradient(
+        rgba(18,16,16,0) 50%,
+        rgba(0,0,0,.13) 50%
+    ),
+    linear-gradient(
+        90deg,
+        rgba(255,0,0,.025),
+        rgba(0,255,0,.015),
+        rgba(0,0,255,.025)
+    );
 
     background-size:100% 4px,4px 100%;
 }
 
-/* =========================
-   CRT MONITOR
-========================= */
+/* MONITOR */
 
 .crt-container{
+    width:100%;
     height:100vh;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    padding:20px;
-
+    padding:15px;
     perspective:1200px;
 }
 
@@ -94,47 +81,41 @@ body{
     height:min(680px,88vh);
 
     background:#252525;
-
     border:4px solid #383838;
     border-radius:38px;
 
     padding:24px;
-
     position:relative;
 
     box-shadow:
-        inset 0 0 50px #000,
-        0 45px 100px rgba(0,0,0,.85),
-        0 0 30px rgba(255,255,255,.05);
+    inset 0 0 50px #000,
+    0 45px 100px rgba(0,0,0,.85);
 
     transform:rotateX(2deg);
-
-    transition:transform .15s ease-out;
+    transition:.15s;
 }
 
 .monitor::after{
     content:"NIHAL • 2004";
 
     position:absolute;
-
     bottom:7px;
     left:50%;
 
     transform:translateX(-50%);
 
     color:#777;
-
-    font:14px var(--font-pixel);
-
+    font:14px var(--pixel);
     letter-spacing:2px;
 }
+
+/* SCREEN */
 
 .screen{
     width:100%;
     height:100%;
 
     overflow:hidden;
-
     position:relative;
 
     border:10px solid #111;
@@ -148,9 +129,7 @@ body{
     flex-direction:column;
 }
 
-/* =========================
-   XP TITLE BAR
-========================= */
+/* XP BAR */
 
 .top-bar{
     height:36px;
@@ -162,22 +141,19 @@ body{
 
     padding:0 9px;
 
-    background:linear-gradient(
+    background:
+    linear-gradient(
         to bottom,
         #0058e4 0%,
         #3b8cf8 12%,
         #1e53bd 100%
     );
-
-    border-bottom:1px solid #003091;
 }
 
 .title-left{
     display:flex;
     align-items:center;
-
     gap:8px;
-
     min-width:0;
 }
 
@@ -191,9 +167,7 @@ body{
     font-weight:600;
 
     white-space:nowrap;
-
     overflow:hidden;
-
     text-overflow:ellipsis;
 }
 
@@ -213,10 +187,8 @@ body{
     align-items:center;
     justify-content:center;
 
-    font-size:12px;
     font-weight:bold;
-
-    box-shadow:1px 1px 2px #000;
+    cursor:pointer;
 }
 
 .min{
@@ -227,31 +199,23 @@ body{
     background:#e81123;
 }
 
-/* =========================
-   DESKTOP
-========================= */
+/* DESKTOP */
 
 .desktop{
     flex:1;
-
     position:relative;
-
     overflow:hidden;
 
-    padding:35px;
-
     background:
-        linear-gradient(
-            rgba(4,12,22,.62),
-            rgba(0,0,0,.78)
-        ),
-        url("https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1600&q=80")
-        center/cover;
+    linear-gradient(
+        rgba(4,12,22,.62),
+        rgba(0,0,0,.78)
+    ),
+    url("https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1600&q=80")
+    center/cover;
 }
 
-/* =========================
-   DESKTOP ICONS
-========================= */
+/* ICONS */
 
 .icon-grid{
     position:absolute;
@@ -263,14 +227,13 @@ body{
 
     grid-template-columns:repeat(2,75px);
 
-    gap:18px 10px;
+    gap:15px 10px;
 
     z-index:20;
 }
 
 .desktop-icon{
     display:flex;
-
     flex-direction:column;
 
     align-items:center;
@@ -281,29 +244,26 @@ body{
 
     text-shadow:1px 1px 3px #000;
 
-    user-select:none;
-
     cursor:pointer;
 
-    transition:.2s;
+    padding:5px;
+
+    border:1px solid transparent;
+    border-radius:5px;
 }
 
 .desktop-icon:hover{
-    transform:scale(1.08);
-
-    filter:brightness(1.3);
+    background:rgba(36,94,219,.4);
+    border-color:rgba(255,255,255,.3);
 }
 
 .icon-img{
     width:34px;
     height:34px;
-
     object-fit:contain;
 }
 
-/* =========================
-   BRANDING
-========================= */
+/* BRAND */
 
 .branding{
     position:absolute;
@@ -313,7 +273,7 @@ body{
 
     transform:translate(-50%,-50%);
 
-    width:min(90%,760px);
+    width:90%;
 
     text-align:center;
 
@@ -323,7 +283,7 @@ body{
 .estd{
     color:#aaa;
 
-    font:24px var(--font-pixel);
+    font:24px var(--pixel);
 
     letter-spacing:2px;
 }
@@ -331,7 +291,9 @@ body{
 h1{
     margin:5px 0 15px;
 
-    font:clamp(42px,7vw,82px) var(--font-pixel);
+    font:
+    clamp(42px,7vw,82px)
+    var(--pixel);
 
     line-height:.9;
 
@@ -340,18 +302,18 @@ h1{
     text-transform:uppercase;
 
     text-shadow:
-        0 0 8px #33ff33,
-        0 0 22px rgba(51,255,51,.5);
+    0 0 8px var(--green),
+    0 0 22px rgba(51,255,51,.5);
 }
 
-.status-badge{
+.status{
     display:inline-flex;
 
     align-items:center;
 
     gap:7px;
 
-    padding:5px 14px;
+    padding:6px 15px;
 
     border-radius:20px;
 
@@ -359,15 +321,13 @@ h1{
 
     font-size:12px;
 
-    font-weight:600;
+    font-weight:bold;
 
     box-shadow:
-        0 0 12px rgba(46,204,113,.35);
+    0 0 15px rgba(46,204,113,.4);
 }
 
-/* =========================
-   RATE CARD
-========================= */
+/* RATE */
 
 .rate-card{
     position:absolute;
@@ -379,33 +339,30 @@ h1{
 
     padding:13px;
 
-    background:rgba(0,0,0,.78);
+    background:rgba(0,0,0,.8);
 
-    border:1px solid var(--crt-green);
+    border:1px solid var(--green);
 
-    box-shadow:
-        0 0 15px rgba(51,255,51,.15);
+    color:var(--green);
 
-    color:var(--crt-green);
+    font:18px var(--pixel);
 
-    font:18px var(--font-pixel);
+    line-height:1.2;
 
-    line-height:1.05;
+    z-index:15;
 }
 
 .rate-title{
-    border-bottom:1px solid var(--crt-green);
+    border-bottom:1px solid var(--green);
 
     padding-bottom:5px;
 
     margin-bottom:6px;
 }
 
-/* =========================
-   QUOTE
-========================= */
+/* QUOTE */
 
-.quote-box{
+.quote{
     position:absolute;
 
     left:28px;
@@ -413,270 +370,44 @@ h1{
 
     width:min(350px,42%);
 
-    min-height:62px;
+    min-height:60px;
 
     display:flex;
-
     align-items:center;
 
-    padding:9px 13px;
+    padding:10px 13px;
 
-    border-left:3px solid var(--crt-green);
+    border-left:3px solid var(--green);
 
-    background:rgba(0,0,0,.4);
+    background:rgba(0,0,0,.45);
 
     backdrop-filter:blur(5px);
 
-    color:#fff;
-
-    font:19px var(--font-pixel);
-
-    line-height:1.15;
+    font:19px var(--pixel);
 
     font-style:italic;
 
-    opacity:.9;
-
-    transition:
-        opacity .45s ease,
-        transform .45s ease;
+    transition:.4s;
 
     z-index:10;
 }
 
-.quote-box.fade{
+.quote.fade{
     opacity:0;
-
-    transform:translateY(7px);
+    transform:translateY(8px);
 }
 
-/* =========================
-   ABOUT ME POPUP
-========================= */
-
-.about-overlay{
-    position:fixed;
-
-    inset:0;
-
-    background:rgba(0,0,0,.72);
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    padding:20px;
-
-    z-index:7000;
-
-    opacity:0;
-
-    visibility:hidden;
-
-    transition:.25s;
-}
-
-.about-overlay.show{
-    opacity:1;
-
-    visibility:visible;
-}
-
-.about-window{
-    width:min(480px,92vw);
-
-    background:#d7d7d7;
-
-    color:#111;
-
-    border:3px solid #777;
-
-    box-shadow:
-        0 25px 80px rgba(0,0,0,.9);
-
-    font-family:Arial,sans-serif;
-
-    transform:scale(.9);
-
-    transition:.25s;
-}
-
-.about-overlay.show .about-window{
-    transform:scale(1);
-}
-
-.about-titlebar{
-    height:34px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:0 7px;
-
-    color:white;
-
-    font-size:13px;
-
-    font-weight:bold;
-
-    background:linear-gradient(
-        to bottom,
-        #0058e4,
-        #1e53bd
-    );
-}
-
-.about-close{
-    width:24px;
-    height:24px;
-
-    border:1px solid white;
-
-    background:#e81123;
-
-    color:white;
-
-    font-weight:bold;
-
-    cursor:pointer;
-}
-
-.about-content{
-    padding:20px;
-
-    background:#eeeeee;
-}
-
-.about-avatar{
-    width:80px;
-    height:80px;
-
-    margin:0 auto 12px;
-
-    border-radius:50%;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    background:#111;
-
-    color:#33ff33;
-
-    font:38px var(--font-pixel);
-
-    border:3px solid #555;
-
-    box-shadow:0 0 15px rgba(51,255,51,.4);
-}
-
-.about-content h2{
-    text-align:center;
-
-    margin-bottom:4px;
-
-    font-size:22px;
-}
-
-.about-role{
-    text-align:center;
-
-    color:#555;
-
-    font-size:13px;
-
-    margin-bottom:15px;
-}
-
-.about-text{
-    background:white;
-
-    border:1px solid #aaa;
-
-    padding:13px;
-
-    font-size:13px;
-
-    line-height:1.6;
-
-    margin-bottom:14px;
-}
-
-.about-tags{
-    display:flex;
-
-    flex-wrap:wrap;
-
-    justify-content:center;
-
-    gap:7px;
-
-    margin-bottom:15px;
-}
-
-.about-tag{
-    padding:5px 9px;
-
-    background:#222;
-
-    color:#33ff33;
-
-    font:14px var(--font-pixel);
-
-    border-radius:3px;
-}
-
-.instagram-btn{
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    gap:8px;
-
-    width:100%;
-
-    padding:10px;
-
-    background:#245edb;
-
-    color:white;
-
-    text-decoration:none;
-
-    font-weight:bold;
-
-    border:2px solid #003091;
-
-    box-shadow:inset 0 1px rgba(255,255,255,.35);
-
-    transition:.2s;
-}
-
-.instagram-btn:hover{
-    background:#174bb8;
-
-    transform:translateY(-1px);
-}
-
-/* =========================
-   MUSIC PLAYER
-========================= */
+/* MUSIC */
 
 .player-anchor{
     position:fixed;
 
     left:50%;
-    bottom:18px;
+    bottom:15px;
 
     transform:translateX(-50%);
 
-    width:min(650px,92vw);
+    width:min(700px,94vw);
 
     z-index:5000;
 }
@@ -686,28 +417,25 @@ h1{
 
     align-items:center;
 
-    gap:15px;
+    gap:13px;
 
-    padding:13px 17px;
+    padding:12px 15px;
 
-    border:1px solid var(--glass-border);
+    border:1px solid rgba(255,255,255,.2);
 
     border-radius:20px;
 
-    background:rgba(15,18,28,.72);
+    background:var(--glass);
 
     backdrop-filter:blur(18px);
 
-    -webkit-backdrop-filter:blur(18px);
-
     box-shadow:
-        0 15px 45px rgba(0,0,0,.6),
-        inset 0 1px rgba(255,255,255,.08);
+    0 15px 45px rgba(0,0,0,.7);
 }
 
-.album-art{
-    width:54px;
-    height:54px;
+.album{
+    width:52px;
+    height:52px;
 
     flex-shrink:0;
 
@@ -715,88 +443,73 @@ h1{
 
     overflow:hidden;
 
-    border:1px solid rgba(255,255,255,.25);
-
     animation:rotate 10s linear infinite;
 
     animation-play-state:paused;
 }
 
-.album-art.playing{
+.album.playing{
     animation-play-state:running;
 }
 
-.album-art img{
+.album img{
     width:100%;
     height:100%;
-
     object-fit:cover;
 }
 
 .player-info{
     flex:1;
-
     min-width:0;
 }
 
-.track-name{
+.track{
     font-size:13px;
-
-    font-weight:600;
+    font-weight:bold;
 
     white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+
+    margin-bottom:7px;
+}
+
+.progress{
+    width:100%;
+    height:5px;
+
+    background:rgba(255,255,255,.15);
+
+    border-radius:10px;
 
     overflow:hidden;
 
-    text-overflow:ellipsis;
+    cursor:pointer;
+}
 
-    margin-bottom:8px;
+.progress-bar{
+    width:0%;
+    height:100%;
+
+    background:
+    linear-gradient(
+        90deg,
+        var(--blue),
+        var(--green)
+    );
 }
 
 .player-status{
-    font:14px var(--font-pixel);
-
     color:#9cff9c;
+
+    font:14px var(--pixel);
 
     margin-top:4px;
 }
 
-.progress-container{
-    width:100%;
-
-    height:5px;
-
-    border-radius:10px;
-
-    background:rgba(255,255,255,.13);
-
-    cursor:pointer;
-
-    overflow:hidden;
-}
-
-.progress-bar{
-    height:100%;
-
-    width:0%;
-
-    border-radius:10px;
-
-    background:linear-gradient(
-        90deg,
-        #245edb,
-        #33ff33
-    );
-
-    transition:width .15s linear;
-}
-
-.player-controls{
+.controls{
     display:flex;
-
-    align-items:center;
-
-    gap:8px;
+    gap:6px;
 }
 
 .btn{
@@ -804,47 +517,230 @@ h1{
     height:38px;
 
     border:0;
-
     border-radius:50%;
 
-    background:rgba(255,255,255,.08);
+    background:rgba(255,255,255,.1);
 
-    color:#fff;
+    color:white;
 
     display:flex;
-
     align-items:center;
     justify-content:center;
 
     cursor:pointer;
-
-    transition:.2s;
 }
 
 .btn:hover{
-    background:rgba(255,255,255,.18);
-
-    transform:scale(1.08);
+    background:rgba(255,255,255,.22);
+    transform:scale(1.06);
 }
 
-.btn:active{
-    transform:scale(.94);
+#play{
+    background:var(--blue);
 }
 
 .btn svg{
-    width:21px;
-    height:21px;
+    width:20px;
+    height:20px;
 
     fill:currentColor;
 }
 
-#play-btn{
-    background:var(--xp-blue);
+/* ABOUT MODAL */
+
+.modal{
+    position:fixed;
+
+    inset:0;
+
+    z-index:8000;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:rgba(0,0,0,.75);
+
+    backdrop-filter:blur(6px);
 }
 
-/* =========================
-   YOUTUBE
-========================= */
+.modal.show{
+    display:flex;
+}
+
+.about{
+    width:min(450px,92vw);
+
+    background:#10141b;
+
+    border:3px solid #303030;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 25px 80px #000,
+    0 0 25px rgba(51,255,51,.2);
+}
+
+.about-title{
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    padding:9px 11px;
+
+    background:
+    linear-gradient(
+        #0058e4,
+        #1e53bd
+    );
+
+    font-size:13px;
+    font-weight:bold;
+}
+
+.about-close{
+    width:25px;
+    height:25px;
+
+    background:#e81123;
+
+    color:white;
+
+    border:1px solid white;
+
+    border-radius:4px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+.about-content{
+    padding:25px;
+
+    text-align:center;
+}
+
+.avatar{
+    width:85px;
+    height:85px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#0b2410;
+
+    border:2px solid var(--green);
+
+    color:var(--green);
+
+    font:45px var(--pixel);
+}
+
+.about-content h2{
+    margin-top:12px;
+
+    color:var(--green);
+
+    font:35px var(--pixel);
+}
+
+.about-content p{
+    color:#ddd;
+
+    margin:10px 0;
+
+    line-height:1.6;
+
+    font-size:13px;
+}
+
+.tags{
+    margin:15px 0;
+}
+
+.tag{
+    display:inline-block;
+
+    padding:5px 9px;
+
+    margin:3px;
+
+    border:1px solid rgba(51,255,51,.5);
+
+    color:#9cff9c;
+
+    border-radius:15px;
+
+    font-size:10px;
+}
+
+.instagram{
+    display:inline-block;
+
+    padding:10px 20px;
+
+    background:var(--blue);
+
+    color:white;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    font-size:12px;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+
+    left:50%;
+    bottom:100px;
+
+    transform:translateX(-50%);
+
+    background:#111;
+
+    border:1px solid var(--green);
+
+    color:var(--green);
+
+    padding:10px 15px;
+
+    border-radius:8px;
+
+    font:15px var(--pixel);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.3s;
+
+    z-index:9000;
+}
+
+.toast.show{
+    opacity:1;
+}
+
+/* YOUTUBE */
 
 #youtube-player{
     position:fixed;
@@ -858,92 +754,26 @@ h1{
     opacity:.01;
 
     pointer-events:none;
-
-    border:0;
 }
 
-/* =========================
-   KEYBOARD EFFECT
-========================= */
-
-.keypress-indicator{
-    position:fixed;
-
-    pointer-events:none;
-
-    color:var(--crt-green);
-
-    font:26px var(--font-pixel);
-
-    text-shadow:0 0 10px var(--crt-green);
-
-    z-index:10000;
-
-    animation:fadeUp .65s ease-out forwards;
-}
-
-@keyframes fadeUp{
-
-    from{
-        opacity:1;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
-
-    to{
-        opacity:0;
-
-        transform:
-            translateY(-60px)
-            scale(1.2);
-    }
-}
+/* ANIMATION */
 
 @keyframes flicker{
-
-    0%,100%{
-        opacity:.98;
-    }
-
-    4%{
-        opacity:.85;
-    }
-
-    7%{
-        opacity:.96;
-    }
-
-    12%{
-        opacity:.9;
-    }
-
-    20%{
-        opacity:1;
-    }
+    0%,100%{opacity:.98}
+    4%{opacity:.85}
+    7%{opacity:.96}
+    12%{opacity:.9}
+    20%{opacity:1}
 }
 
 @keyframes rotate{
-
-    from{
-        transform:rotate(0);
-    }
-
-    to{
-        transform:rotate(360deg);
-    }
+    from{transform:rotate(0)}
+    to{transform:rotate(360deg)}
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:768px){
-
-    body{
-        overflow:hidden;
-    }
 
     .crt-container{
         padding:8px;
@@ -960,7 +790,6 @@ h1{
 
     .screen{
         border-width:6px;
-
         border-radius:10px;
     }
 
@@ -969,7 +798,7 @@ h1{
     }
 
     .title-left span{
-        font-size:10px;
+        font-size:9px;
     }
 
     .desktop{
@@ -996,7 +825,6 @@ h1{
 
     .branding{
         top:42%;
-
         width:95%;
     }
 
@@ -1006,7 +834,6 @@ h1{
 
     h1{
         font-size:42px;
-
         letter-spacing:2px;
     }
 
@@ -1021,38 +848,34 @@ h1{
         font-size:14px;
     }
 
-    .quote-box{
+    .quote{
         left:15px;
         right:15px;
-
         bottom:105px;
 
         width:auto;
-
-        min-height:50px;
 
         font-size:16px;
     }
 
     .player-anchor{
         width:95vw;
-
         bottom:8px;
     }
 
     .music-player{
-        gap:9px;
+        gap:8px;
 
         padding:9px 10px;
 
         border-radius:16px;
     }
 
-    .album-art{
+    .album{
         display:none;
     }
 
-    .track-name{
+    .track{
         font-size:11px;
     }
 
@@ -1070,47 +893,20 @@ h1{
         height:18px;
     }
 
-    .player-controls{
-        gap:3px;
-    }
-
-    .about-content{
-        padding:15px;
-    }
-
-    .about-window{
-        width:94vw;
-    }
-}
-
-@media(prefers-reduced-motion:reduce){
-
-    *,
-    *::before,
-    *::after{
-        animation-duration:.01ms!important;
-
-        animation-iteration-count:1!important;
-
-        scroll-behavior:auto!important;
-    }
 }
 
 </style>
 </head>
 
-
 <body>
 
 <div class="scanlines"></div>
-
 
 <div class="crt-container">
 
 <div class="monitor" id="monitor">
 
 <div class="screen">
-
 
 <!-- XP TITLE BAR -->
 
@@ -1120,8 +916,7 @@ h1{
 
 <img
 src="https://win98icons.alexmeub.com/icons/png/computer_explorer-5.png"
-alt="Computer"
->
+alt="Computer">
 
 <span>
 Internet Explorer - [Nihal Cyber Cafe]
@@ -1129,18 +924,15 @@ Internet Explorer - [Nihal Cyber Cafe]
 
 </div>
 
-
 <div class="window-controls">
 
-<div class="control-btn min">
-_
-</div>
+<div class="control-btn min">_</div>
 
-<div class="control-btn">
-□
-</div>
+<div class="control-btn">□</div>
 
-<div class="control-btn close">
+<div
+class="control-btn close"
+id="close-btn">
 ×
 </div>
 
@@ -1149,93 +941,79 @@ _
 </div>
 
 
-
 <!-- DESKTOP -->
 
 <div class="desktop">
 
 
-<!-- DESKTOP ICONS -->
+<!-- ICONS -->
 
 <div class="icon-grid">
 
 
-<div class="desktop-icon">
+<div
+class="desktop-icon"
+id="internet">
 
 <img
 src="https://win98icons.alexmeub.com/icons/png/msie2-2.png"
-class="icon-img"
-alt="Internet"
->
+class="icon-img">
 
-<span>
-Internet
-</span>
+<span>Internet</span>
 
 </div>
 
-
-<div class="desktop-icon">
-
-<img
-src="https://win98icons.alexmeub.com/icons/png/joystick-0.png"
-class="icon-img"
-alt="Games"
->
-
-<span>
-CS 1.6
-</span>
-
-</div>
-
-
-<div class="desktop-icon">
-
-<img
-src="https://win98icons.alexmeub.com/icons/png/msn_messenger-0.png"
-class="icon-img"
-alt="Messenger"
->
-
-<span>
-Messenger
-</span>
-
-</div>
-
-
-<div class="desktop-icon">
-
-<img
-src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-4.png"
-class="icon-img"
-alt="Songs"
->
-
-<span>
-My Songs
-</span>
-
-</div>
-
-
-<!-- ABOUT ME ICON -->
 
 <div
 class="desktop-icon"
-id="about-icon"
->
+id="games">
 
 <img
-src="https://win98icons.alexmeub.com/icons/png/user_world-0.png"
-class="icon-img"
-alt="About Me"
->
+src="https://win98icons.alexmeub.com/icons/png/joystick-0.png"
+class="icon-img">
 
-<span>
-About Me
-</span>
+<span>CS 1.6</span>
+
+</div>
+
+
+<div
+class="desktop-icon"
+id="messenger">
+
+<img
+src="https://win98icons.alexmeub.com/icons/png/msn_messenger-0.png"
+class="icon-img">
+
+<span>Messenger</span>
+
+</div>
+
+
+<div
+class="desktop-icon"
+id="songs">
+
+<img
+src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-4.png"
+class="icon-img">
+
+<span>My Songs</span>
+
+</div>
+
+
+<!-- ABOUT ME -->
+
+<div
+class="desktop-icon"
+id="about-icon">
+
+<img
+src="https://win98icons.alexmeub.com/icons/png/user_card-2.png"
+class="icon-img">
+
+<span>About Me</span>
 
 </div>
 
@@ -1243,8 +1021,7 @@ About Me
 </div>
 
 
-
-<!-- RATE CARD -->
+<!-- RATE -->
 
 <div class="rate-card">
 
@@ -1252,24 +1029,12 @@ About Me
 RATES:
 </div>
 
-<div>
-1 HOUR: ₹20
-</div>
-
-<div>
-30 MINS: ₹12
-</div>
-
-<div>
-PRINT: ₹5/page
-</div>
-
-<div>
-SONG: ₹2
-</div>
+<div>1 HOUR: ₹20</div>
+<div>30 MINS: ₹12</div>
+<div>PRINT: ₹5/page</div>
+<div>SONG: ₹2</div>
 
 </div>
-
 
 
 <!-- CENTER -->
@@ -1285,26 +1050,18 @@ NIHAL<br>
 CYBER CAFE
 </h1>
 
-<div class="status-badge">
-
-<span>
-●
-</span>
-
-SYSTEM ONLINE
-
+<div class="status">
+● SYSTEM ONLINE
 </div>
 
 </div>
 
 
-
-<!-- QUOTES -->
+<!-- QUOTE -->
 
 <div
-class="quote-box"
-id="quote-rotator"
->
+class="quote"
+id="quote">
 
 "Bhaiya, time badha do, 5 minute bache hain..."
 
@@ -1320,170 +1077,40 @@ id="quote-rotator"
 </div>
 
 
-
-<!-- =========================
-     ABOUT ME WINDOW
-========================= -->
-
-<div
-class="about-overlay"
-id="about-overlay"
->
-
-<div class="about-window">
-
-
-<div class="about-titlebar">
-
-<span>
-About Me - Nihal.exe
-</span>
-
-<button
-class="about-close"
-id="about-close"
->
-×
-</button>
-
-</div>
-
-
-<div class="about-content">
-
-
-<div class="about-avatar">
-N
-</div>
-
-
-<h2>
-NIHAL
-</h2>
-
-
-<div class="about-role">
-Student • Cybersecurity Enthusiast
-</div>
-
-
-<div class="about-text">
-
-<b>👋 Welcome to my corner of the internet!</b>
-
-<br><br>
-
-I'm Nihal — a student who enjoys
-<b>coding, cybersecurity, technology</b>
-and exploring the digital world.
-
-<br><br>
-
-This website is designed with a
-nostalgic <b>2000s Cyber Cafe</b>
-and Windows XP inspired vibe.
-
-<br><br>
-
-<strong>
-SYSTEM STATUS:
-</strong>
-
-<span style="color:green;">
-ONLINE ✓
-</span>
-
-</div>
-
-
-<div class="about-tags">
-
-<span class="about-tag">
-💻 Coding
-</span>
-
-<span class="about-tag">
-🔐 Cybersecurity
-</span>
-
-<span class="about-tag">
-🐍 Python
-</span>
-
-<span class="about-tag">
-🎵 Music
-</span>
-
-</div>
-
-
-<a
-class="instagram-btn"
-href="https://www.instagram.com/cyberxnihal/"
-target="_blank"
-rel="noopener noreferrer"
->
-
-📸
-
-Follow me on Instagram
-@cyberxnihal
-
-</a>
-
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- =========================
-     MUSIC PLAYER
-========================= -->
+<!-- MUSIC PLAYER -->
 
 <div class="player-anchor">
 
 <div class="music-player">
 
 
-<div
-class="album-art"
-id="art-container"
->
+<div class="album" id="album">
 
 <img
 src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=200&h=200&fit=crop"
-alt="Music"
->
+alt="Music">
 
 </div>
 
 
 <div class="player-info">
 
-
 <div
-class="track-name"
-id="track-title"
->
+class="track"
+id="track">
 
-Connecting to Cyber Cafe Playlist...
+Press ▶ to enter the Cyber Cafe
 
 </div>
 
 
 <div
-class="progress-container"
-id="progress-container"
->
+class="progress"
+id="progress">
 
 <div
 class="progress-bar"
-id="progress-bar"
->
+id="progress-bar">
 </div>
 
 </div>
@@ -1491,27 +1118,22 @@ id="progress-bar"
 
 <div
 class="player-status"
-id="player-status"
->
+id="player-status">
 
-● READY
+● CONNECTING...
+
+</div>
 
 </div>
 
 
-</div>
-
-
-
-<div class="player-controls">
+<div class="controls">
 
 
 <button
 class="btn"
-id="prev-btn"
-title="Previous track"
-aria-label="Previous track"
->
+id="prev"
+title="Previous">
 
 <svg viewBox="0 0 24 24">
 
@@ -1522,18 +1144,14 @@ aria-label="Previous track"
 </button>
 
 
-
 <button
 class="btn"
-id="play-btn"
-title="Play/Pause"
-aria-label="Play/Pause"
->
+id="play"
+title="Play">
 
 <svg
 id="play-icon"
-viewBox="0 0 24 24"
->
+viewBox="0 0 24 24">
 
 <path d="M8 5v14l11-7z"/>
 
@@ -1542,13 +1160,10 @@ viewBox="0 0 24 24"
 </button>
 
 
-
 <button
 class="btn"
-id="next-btn"
-title="Next track"
-aria-label="Next track"
->
+id="next"
+title="Next">
 
 <svg viewBox="0 0 24 24">
 
@@ -1566,26 +1181,117 @@ aria-label="Next track"
 </div>
 
 
+<!-- ABOUT ME MODAL -->
+
+<div
+class="modal"
+id="about-modal">
+
+<div class="about">
+
+<div class="about-title">
+
+<span>
+NIHAL - About Me
+</span>
+
+<button
+class="about-close"
+id="about-close">
+×
+</button>
+
+</div>
+
+
+<div class="about-content">
+
+<div class="avatar">
+N
+</div>
+
+<h2>
+NIHAL
+</h2>
+
+<p>
+Student • Programmer • Cybersecurity Enthusiast
+</p>
+
+<p>
+Welcome to my digital cyber cafe.
+I love technology, coding, cybersecurity
+and creating cool web projects.
+</p>
+
+
+<div class="tags">
+
+<span class="tag">
+💻 Programming
+</span>
+
+<span class="tag">
+🛡️ Cybersecurity
+</span>
+
+<span class="tag">
+🐍 Python
+</span>
+
+<span class="tag">
+🎵 Music
+</span>
+
+</div>
+
+
+<a
+class="instagram"
+href="https://www.instagram.com/cyberxnihal/"
+target="_blank"
+rel="noopener">
+
+📸 @cyberxnihal
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+class="toast"
+id="toast">
+
+Ready
+
+</div>
+
 
 <!-- YOUTUBE -->
 
 <div id="youtube-player"></div>
 
 
-
 <script>
 
-/* =========================
-   CONFIG
-========================= */
+/* =====================================================
+   SETTINGS
+===================================================== */
 
 const PLAYLIST_ID =
 "PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy";
 
 
-/* =========================
+/* =====================================================
    QUOTES
-========================= */
+===================================================== */
 
 const quotes = [
 
@@ -1611,23 +1317,319 @@ const quotes = [
 
 '"Dial-up ki awaaz abhi bhi yaad hai..."',
 
-'"Internet slow hai, lekin memories fast hain."',
-
-'"Those 2004 memories never get old."'
+'"Internet slow hai, lekin memories fast hain."'
 
 ];
 
-let quoteIndex = 0;
+let quoteIndex=0;
 
-const quoteEl =
-document.getElementById("quote-rotator");
+const quote=
+document.getElementById("quote");
+
+setInterval(()=>{
+
+quote.classList.add("fade");
+
+setTimeout(()=>{
+
+quoteIndex=
+(quoteIndex+1)%quotes.length;
+
+quote.textContent=
+quotes[quoteIndex];
+
+quote.classList.remove("fade");
+
+},400);
+
+},5000);
 
 
-function changeQuote(){
+/* =====================================================
+   TOAST
+===================================================== */
 
-    quoteEl.classList.add("fade");
+const toast=
+document.getElementById("toast");
 
-    setTimeout(()=>{
+function showToast(text){
 
-        quoteIndex =
-        
+toast.textContent=text;
+
+toast.classList.add("show");
+
+clearTimeout(window.toastTimer);
+
+window.toastTimer=
+setTimeout(()=>{
+
+toast.classList.remove("show");
+
+},2200);
+
+}
+
+
+/* =====================================================
+   ABOUT ME
+===================================================== */
+
+const modal=
+document.getElementById("about-modal");
+
+document
+.getElementById("about-icon")
+.addEventListener("click",()=>{
+
+modal.classList.add("show");
+
+});
+
+
+document
+.getElementById("about-close")
+.addEventListener("click",()=>{
+
+modal.classList.remove("show");
+
+});
+
+
+modal.addEventListener("click",(e)=>{
+
+if(e.target===modal){
+
+modal.classList.remove("show");
+
+}
+
+});
+
+
+document.addEventListener("keydown",(e)=>{
+
+if(e.key==="Escape"){
+
+modal.classList.remove("show");
+
+}
+
+});
+
+
+/* =====================================================
+   ICONS
+===================================================== */
+
+document
+.getElementById("internet")
+.addEventListener("click",()=>{
+
+window.open(
+"https://www.google.com/",
+"_blank"
+);
+
+});
+
+
+document
+.getElementById("games")
+.addEventListener("click",()=>{
+
+showToast(
+"🎮 CS 1.6 • Dust II • Game Time!"
+);
+
+});
+
+
+document
+.getElementById("messenger")
+.addEventListener("click",()=>{
+
+showToast(
+"💬 Yahoo Messenger: BUSY 😎"
+);
+
+});
+
+
+document
+.getElementById("songs")
+.addEventListener("click",()=>{
+
+showToast(
+"🎵 Music Player Ready!"
+);
+
+if(playerReady){
+
+player.playVideo();
+
+}
+
+});
+
+
+document
+.getElementById("close-btn")
+.addEventListener("click",()=>{
+
+showToast(
+"😎 Cyber Cafe cannot be closed!"
+);
+
+});
+
+
+/* =====================================================
+   YOUTUBE PLAYER
+===================================================== */
+
+let player=null;
+
+let playerReady=false;
+
+const playBtn=
+document.getElementById("play");
+
+const prevBtn=
+document.getElementById("prev");
+
+const nextBtn=
+document.getElementById("next");
+
+const playIcon=
+document.getElementById("play-icon");
+
+const track=
+document.getElementById("track");
+
+const status=
+document.getElementById("player-status");
+
+const album=
+document.getElementById("album");
+
+const progress=
+document.getElementById("progress");
+
+const progressBar=
+document.getElementById("progress-bar");
+
+
+/* YOUTUBE API */
+
+window.onYouTubeIframeAPIReady=function(){
+
+player=
+new YT.Player(
+"youtube-player",
+{
+
+height:"1",
+width:"1",
+
+playerVars:{
+
+playsinline:1,
+
+controls:0,
+
+rel:0,
+
+modestbranding:1
+
+},
+
+events:{
+
+onReady:onReady,
+
+onStateChange:onStateChange,
+
+onError:onError
+
+}
+
+});
+
+};
+
+
+function onReady(){
+
+playerReady=true;
+
+status.textContent=
+"● PLAYLIST READY";
+
+track.textContent=
+"Press ▶ to play playlist";
+
+
+try{
+
+player.loadPlaylist({
+
+listType:"playlist",
+
+list:PLAYLIST_ID,
+
+index:0
+
+});
+
+}catch(e){
+
+console.log(e);
+
+}
+
+setInterval(
+updateProgress,
+500
+);
+
+}
+
+
+/* =====================================================
+   PLAYER STATE
+===================================================== */
+
+function onStateChange(event){
+
+if(event.data===
+YT.PlayerState.PLAYING){
+
+playIcon.innerHTML=
+'<path d="M6 5h4v14H6zm8 0h4v14h-4z"/>';
+
+album.classList.add("playing");
+
+status.textContent=
+"● PLAYING";
+
+updateTrack();
+
+}
+
+
+if(event.data===
+YT.PlayerState.PAUSED){
+
+playIcon.innerHTML=
+'<path d="M8 5v14l11-7z"/>';
+
+album.classList.remove("playing");
+
+status.textContent=
+"● PAUSED";
+
+}
+
+
+if(event.data===
+YT.PlayerState.BUF
