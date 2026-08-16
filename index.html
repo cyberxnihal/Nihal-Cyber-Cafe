@@ -989,4 +989,342 @@ function updateTrackInfo(){
 
     }catch(error){
 
-   
+        console.log("Track info unavailable");
+
+    }
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function updateProgress(){
+
+    if(!player || !playerReady) return;
+
+    try{
+
+        const duration = player.getDuration();
+        const current = player.getCurrentTime();
+
+        if(duration > 0){
+
+            progressBar.style.width =
+                ((current / duration) * 100) + "%";
+
+        }
+
+    }catch(error){
+
+        // Ignore temporary YouTube API errors
+
+    }
+
+}
+
+
+/* =========================================================
+   PLAY / PAUSE
+========================================================= */
+
+playBtn.addEventListener("click",function(){
+
+    if(!playerReady){
+
+        playerStatus.textContent = "● CONNECTING...";
+
+        return;
+
+    }
+
+    const state = player.getPlayerState();
+
+    if(state === YT.PlayerState.PLAYING){
+
+        player.pauseVideo();
+
+    }else{
+
+        player.playVideo();
+
+    }
+
+});
+
+
+/* =========================================================
+   NEXT / PREVIOUS
+========================================================= */
+
+nextBtn.addEventListener("click",function(){
+
+    if(!playerReady) return;
+
+    player.nextVideo();
+
+});
+
+
+prevBtn.addEventListener("click",function(){
+
+    if(!playerReady) return;
+
+    player.previousVideo();
+
+});
+
+
+/* =========================================================
+   PROGRESS SEEK
+========================================================= */
+
+progressContainer.addEventListener("click",function(e){
+
+    if(!playerReady) return;
+
+    const rect =
+        progressContainer.getBoundingClientRect();
+
+    const position =
+        (e.clientX - rect.left) / rect.width;
+
+    const duration =
+        player.getDuration();
+
+    if(duration){
+
+        player.seekTo(
+            position * duration,
+            true
+        );
+
+    }
+
+});
+
+
+/* =========================================================
+   YOUTUBE ERRORS
+========================================================= */
+
+function onPlayerError(event){
+
+    console.log("YouTube error:",event.data);
+
+    if(event.data === 150 || event.data === 101){
+
+        trackTitle.textContent =
+            "Track unavailable — try Next ▶";
+
+    }else if(event.data === 100){
+
+        trackTitle.textContent =
+            "Video not found";
+
+    }else{
+
+        trackTitle.textContent =
+            "YouTube playback error";
+
+    }
+
+    playerStatus.textContent = "● ERROR";
+
+}
+
+
+/* =========================================================
+   KEYBOARD EFFECT
+========================================================= */
+
+let audioContext = null;
+
+function playKeySound(){
+
+    try{
+
+        if(!audioContext){
+
+            audioContext =
+                new (window.AudioContext ||
+                window.webkitAudioContext)();
+
+        }
+
+        if(audioContext.state === "suspended"){
+
+            audioContext.resume();
+
+        }
+
+        const oscillator =
+            audioContext.createOscillator();
+
+        const gain =
+            audioContext.createGain();
+
+        oscillator.type = "square";
+
+        oscillator.frequency.setValueAtTime(
+            140,
+            audioContext.currentTime
+        );
+
+        gain.gain.setValueAtTime(
+            .06,
+            audioContext.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            .001,
+            audioContext.currentTime + .08
+        );
+
+        oscillator.connect(gain);
+
+        gain.connect(audioContext.destination);
+
+        oscillator.start();
+
+        oscillator.stop(
+            audioContext.currentTime + .08
+        );
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+
+function createKeyVisual(key){
+
+    const div =
+        document.createElement("div");
+
+    div.className =
+        "keypress-indicator";
+
+    div.style.left =
+        (Math.random() * 75 + 10) + "%";
+
+    div.style.top =
+        (Math.random() * 45 + 20) + "%";
+
+    div.textContent =
+        key.length > 1 ? "[" + key + "]" : key;
+
+    document.body.appendChild(div);
+
+    setTimeout(() => {
+
+        div.remove();
+
+    },650);
+
+}
+
+
+window.addEventListener("keydown",function(e){
+
+    /*
+      Don't create visual spam while user is typing
+      into browser controls.
+    */
+
+    playKeySound();
+
+    createKeyVisual(e.key);
+
+});
+
+
+/* =========================================================
+   MOUSE PARALLAX
+========================================================= */
+
+const monitor =
+    document.getElementById("monitor");
+
+document.addEventListener("mousemove",function(e){
+
+    if(window.innerWidth <= 768) return;
+
+    const x =
+        (e.clientX / window.innerWidth - .5) * 2;
+
+    const y =
+        (e.clientY / window.innerHeight - .5) * 2;
+
+    monitor.style.transform =
+        `rotateX(${2 - y * 1.2}deg)
+         rotateY(${x * 1.2}deg)`;
+
+});
+
+
+document.addEventListener("mouseleave",function(){
+
+    monitor.style.transform =
+        "rotateX(2deg) rotateY(0deg)";
+
+});
+
+
+/* =========================================================
+   DOUBLE CLICK CRT FLASH
+========================================================= */
+
+monitor.addEventListener("dblclick",function(){
+
+    monitor.style.filter =
+        "brightness(1.7)";
+
+    setTimeout(() => {
+
+        monitor.style.filter =
+            "brightness(1)";
+
+    },150);
+
+});
+
+
+/* =========================================================
+   MOBILE RESET
+========================================================= */
+
+window.addEventListener("resize",function(){
+
+    if(window.innerWidth <= 768){
+
+        monitor.style.transform =
+            "rotateX(0deg) rotateY(0deg)";
+
+    }
+
+});
+
+
+/* =========================================================
+   INITIAL STATUS
+========================================================= */
+
+trackTitle.textContent =
+    "Press ▶ to enter the Cyber Cafe";
+
+playerStatus.textContent =
+    "● CONNECTING...";
+
+</script>
+
+
+<!-- YouTube IFrame API -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+</body>
+</html>
