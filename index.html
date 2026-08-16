@@ -794,8 +794,14 @@ h1{
    CONFIG
 ========================================================= */
 
-const PLAYLIST_ID = "PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy";
-
+const SONGS = [
+    "ww6N-jyjsbw",
+    "yQmPk0e7Q1w",
+    "T3VEK_4ANlE",
+    "6S6Y41QeQlQ",
+    "CzrpH-RCEDs",
+    "GL7Y0gmUzG0"
+];
 
 /* =========================================================
    QUOTES
@@ -862,6 +868,9 @@ const artContainer = document.getElementById("art-container");
 
 /* YouTube API callback */
 
+let currentSongIndex =
+    Math.floor(Math.random() * SONGS.length);
+
 window.onYouTubeIframeAPIReady = function(){
 
     player = new YT.Player("youtube-player",{
@@ -869,10 +878,9 @@ window.onYouTubeIframeAPIReady = function(){
         height:"1",
         width:"1",
 
+        videoId:SONGS[currentSongIndex],
+
         playerVars:{
-            listType:"playlist",
-            list:PLAYLIST_ID,
-            index:0,
             playsinline:1,
             controls:0,
             rel:0,
@@ -945,24 +953,25 @@ function onPlayerStateChange(event){
 
             break;
 
+   
+          case YT.PlayerState.ENDED:
 
-        case YT.PlayerState.ENDED:
+    artContainer.classList.remove("playing");
 
-            artContainer.classList.remove("playing");
+    playerStatus.textContent = "● NEXT TRACK...";
 
-            playerStatus.textContent = "● NEXT TRACK...";
+    setTimeout(() => {
 
-            setTimeout(() => {
+        currentSongIndex =
+            (currentSongIndex + 1) % SONGS.length;
 
-                try{
-                    player.nextVideo();
-                }catch(error){
-                    console.log(error);
-                }
+        player.loadVideoById(
+            SONGS[currentSongIndex]
+        );
 
-            },500);
+    },500);
 
-            break;
+    break;
 
     }
 
@@ -1062,7 +1071,12 @@ nextBtn.addEventListener("click",function(){
 
     if(!playerReady) return;
 
-    player.nextVideo();
+    currentSongIndex =
+        (currentSongIndex + 1) % SONGS.length;
+
+    player.loadVideoById(
+        SONGS[currentSongIndex]
+    );
 
 });
 
@@ -1071,7 +1085,12 @@ prevBtn.addEventListener("click",function(){
 
     if(!playerReady) return;
 
-    player.previousVideo();
+    currentSongIndex =
+        (currentSongIndex - 1 + SONGS.length) % SONGS.length;
+
+    player.loadVideoById(
+        SONGS[currentSongIndex]
+    );
 
 });
 
