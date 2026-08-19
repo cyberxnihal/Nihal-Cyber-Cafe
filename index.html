@@ -3283,5 +3283,2243 @@ console.log(
 );
 
 </script>
+<!-- =========================================================
+     NIHAL CYBER CAFE — TIC TAC TOE 2004 DELUXE
+     PASTE BEFORE THE FINAL </html>
+========================================================= -->
 
+<style>
+
+/* =========================================================
+   TIC TAC TOE DELUXE WINDOW
+========================================================= */
+
+.ttt-window{
+    background:#dcdcdc;
+    color:#111;
+    font-family:Arial,sans-serif;
+}
+
+.ttt-main{
+    text-align:center;
+}
+
+.ttt-header{
+    padding-bottom:8px;
+}
+
+.ttt-header h2{
+    margin:0;
+    color:#245edb;
+    font-size:24px;
+    text-shadow:1px 1px #fff;
+}
+
+.ttt-header p{
+    margin:4px 0 0;
+    font-size:11px;
+    color:#555;
+}
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.ttt-menu{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:6px;
+    margin:8px 0;
+}
+
+.ttt-menu button,
+.ttt-action{
+    padding:6px 10px;
+    border:2px outset #fff;
+    background:#dcdcdc;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.ttt-menu button:active,
+.ttt-action:active{
+    border-style:inset;
+}
+
+.ttt-menu button.active{
+    background:#245edb;
+    color:#fff;
+}
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.ttt-status{
+    min-height:20px;
+    margin:5px 0;
+    color:#1745a5;
+    font-family:"Courier New",monospace;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.ttt-timer{
+    font-family:"Courier New",monospace;
+    font-size:12px;
+    color:#333;
+}
+
+.ttt-timer.warning{
+    color:#d71920;
+    animation:tttTimerPulse .5s infinite alternate;
+}
+
+@keyframes tttTimerPulse{
+    from{opacity:1}
+    to{opacity:.35}
+}
+
+/* =========================================================
+   BOARD
+========================================================= */
+
+.ttt-board{
+    width:270px;
+    height:270px;
+    margin:10px auto;
+    padding:4px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:4px;
+    background:#245edb;
+    border:3px solid #1745a5;
+    box-shadow:
+        inset 0 0 8px rgba(0,0,0,.5),
+        4px 4px 8px rgba(0,0,0,.3);
+}
+
+.ttt-cell{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#f5f5f5;
+    border:2px solid #888;
+    font-family:Arial,sans-serif;
+    font-size:52px;
+    font-weight:bold;
+    cursor:pointer;
+    user-select:none;
+    transition:.12s;
+}
+
+.ttt-cell:hover{
+    background:#dceaff;
+}
+
+.ttt-cell.x{
+    color:#d71920;
+}
+
+.ttt-cell.o{
+    color:#245edb;
+}
+
+.ttt-cell.win{
+    background:#fff3a6;
+    animation:tttWinCell .45s infinite alternate;
+}
+
+@keyframes tttWinCell{
+    from{transform:scale(1)}
+    to{transform:scale(.94)}
+}
+
+/* =========================================================
+   SCORE
+========================================================= */
+
+.ttt-score{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:4px;
+    margin:8px auto;
+    max-width:430px;
+}
+
+.ttt-score-box{
+    padding:5px;
+    background:#eee;
+    border:1px solid #999;
+    font-size:10px;
+}
+
+.ttt-score-box b{
+    display:block;
+    font-size:15px;
+    color:#245edb;
+}
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.ttt-controls{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-top:8px;
+}
+
+.ttt-action{
+    font-size:11px;
+}
+
+.ttt-action.primary{
+    background:#245edb;
+    color:#fff;
+    border-color:#1745a5;
+}
+
+/* =========================================================
+   EXTRA PANELS
+========================================================= */
+
+.ttt-panel{
+    display:none;
+    margin-top:10px;
+    padding:10px;
+    background:#fff;
+    border:1px solid #888;
+    text-align:left;
+    max-height:150px;
+    overflow:auto;
+}
+
+.ttt-panel.active{
+    display:block;
+}
+
+.ttt-panel h3{
+    margin:0 0 8px;
+    color:#245edb;
+    font-size:14px;
+}
+
+.ttt-history-item,
+.ttt-achievement{
+    padding:6px;
+    margin-bottom:4px;
+    background:#eef4ff;
+    border-left:3px solid #245edb;
+    font-size:11px;
+}
+
+.ttt-achievement.locked{
+    opacity:.45;
+    filter:grayscale(1);
+}
+
+.ttt-achievement.unlocked{
+    background:#fff3a6;
+}
+
+/* =========================================================
+   XP / POINTS
+========================================================= */
+
+.ttt-xp{
+    margin:7px 0;
+    font-family:"Courier New",monospace;
+    font-size:11px;
+    color:#16721c;
+}
+
+.ttt-level{
+    font-weight:bold;
+}
+
+/* =========================================================
+   2004 MESSAGE
+========================================================= */
+
+.ttt-retro-message{
+    margin-top:8px;
+    padding:6px;
+    background:#111;
+    color:#33ff33;
+    font-family:"Courier New",monospace;
+    font-size:10px;
+    text-align:left;
+    min-height:28px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:768px){
+
+    .ttt-board{
+        width:230px;
+        height:230px;
+    }
+
+    .ttt-cell{
+        font-size:43px;
+    }
+
+    .ttt-score{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+</style>
+
+
+<!-- =========================================================
+     TIC TAC TOE WINDOW
+========================================================= -->
+
+<div class="fake-window" id="tttWindow">
+
+    <div class="fake-titlebar">
+
+        <div class="fake-title-left">
+            🎮 Tic Tac Toe — 2004
+        </div>
+
+        <div class="fake-controls">
+
+            <div class="fake-control"
+                 onclick="minimizeXPWindow('tttWindow')">
+                _
+            </div>
+
+            <div class="fake-control fake-close"
+                 onclick="closeXPWindow('tttWindow')">
+                ×
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="fake-content ttt-window">
+
+        <div class="ttt-main">
+
+            <div class="ttt-header">
+
+                <h2>TIC TAC TOE</h2>
+
+                <p>
+                    NIHAL CYBER CAFE — 2004 DELUXE EDITION
+                </p>
+
+            </div>
+
+
+            <!-- GAME MODE -->
+
+            <div class="ttt-menu">
+
+                <button
+                    id="tttVsComputer"
+                    class="active"
+                    onclick="setTTTMode('computer')">
+                    🤖 VS COMPUTER
+                </button>
+
+                <button
+                    id="tttTwoPlayer"
+                    onclick="setTTTMode('two')">
+                    👥 2 PLAYER
+                </button>
+
+            </div>
+
+
+            <!-- DIFFICULTY -->
+
+            <div class="ttt-menu">
+
+                <button
+                    id="tttEasy"
+                    class="active"
+                    onclick="setTTTDifficulty('easy')">
+                    EASY
+                </button>
+
+                <button
+                    id="tttMedium"
+                    onclick="setTTTDifficulty('medium')">
+                    MEDIUM
+                </button>
+
+                <button
+                    id="tttHard"
+                    onclick="setTTTDifficulty('hard')">
+                    HARD
+                </button>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div
+                class="ttt-status"
+                id="tttStatus">
+                Your turn — X
+            </div>
+
+            <div
+                class="ttt-timer"
+                id="tttTimer">
+                TIME: 10
+            </div>
+
+
+            <!-- SCORE -->
+
+            <div class="ttt-score">
+
+                <div class="ttt-score-box">
+                    X WINS
+                    <b id="tttXScore">0</b>
+                </div>
+
+                <div class="ttt-score-box">
+                    O WINS
+                    <b id="tttOScore">0</b>
+                </div>
+
+                <div class="ttt-score-box">
+                    DRAWS
+                    <b id="tttDrawScore">0</b>
+                </div>
+
+                <div class="ttt-score-box">
+                    STREAK
+                    <b id="tttStreak">0</b>
+                </div>
+
+            </div>
+
+
+            <!-- BOARD -->
+
+            <div
+                class="ttt-board"
+                id="tttBoard">
+
+                <div class="ttt-cell" data-index="0"></div>
+                <div class="ttt-cell" data-index="1"></div>
+                <div class="ttt-cell" data-index="2"></div>
+
+                <div class="ttt-cell" data-index="3"></div>
+                <div class="ttt-cell" data-index="4"></div>
+                <div class="ttt-cell" data-index="5"></div>
+
+                <div class="ttt-cell" data-index="6"></div>
+                <div class="ttt-cell" data-index="7"></div>
+                <div class="ttt-cell" data-index="8"></div>
+
+            </div>
+
+
+            <!-- XP -->
+
+            <div class="ttt-xp">
+
+                ⭐ CYBER XP:
+                <span id="tttXP">0</span>
+
+                &nbsp; | &nbsp;
+
+                LEVEL:
+                <span
+                    class="ttt-level"
+                    id="tttLevel">
+                    ROOKIE
+                </span>
+
+            </div>
+
+
+            <!-- CONTROLS -->
+
+            <div class="ttt-controls">
+
+                <button
+                    class="ttt-action primary"
+                    onclick="resetTicTacToe()">
+                    🔄 NEW GAME
+                </button>
+
+                <button
+                    class="ttt-action"
+                    onclick="toggleTTTPanel('history')">
+                    📜 HISTORY
+                </button>
+
+                <button
+                    class="ttt-action"
+                    onclick="toggleTTTPanel('achievements')">
+                    🏅 ACHIEVEMENTS
+                </button>
+
+                <button
+                    class="ttt-action"
+                    onclick="resetTTTScores()">
+                    🗑️ RESET SCORE
+                </button>
+
+            </div>
+
+
+            <!-- HISTORY -->
+
+            <div
+                class="ttt-panel"
+                id="tttHistoryPanel">
+
+                <h3>📜 MATCH HISTORY</h3>
+
+                <div id="tttHistoryList">
+                    No matches played yet.
+                </div>
+
+            </div>
+
+
+            <!-- ACHIEVEMENTS -->
+
+            <div
+                class="ttt-panel"
+                id="tttAchievementsPanel">
+
+                <h3>🏅 ACHIEVEMENTS</h3>
+
+                <div
+                    id="tttAchievementList">
+                </div>
+
+            </div>
+
+
+            <!-- RETRO CONSOLE -->
+
+            <div
+                class="ttt-retro-message"
+                id="tttRetroMessage">
+                C:\CYBERCAFE&gt; GAME READY...
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   TIC TAC TOE — DELUXE ENGINE
+========================================================= */
+
+(function(){
+
+"use strict";
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const cells =
+    document.querySelectorAll("#tttBoard .ttt-cell");
+
+const statusEl =
+    document.getElementById("tttStatus");
+
+const timerEl =
+    document.getElementById("tttTimer");
+
+const xScoreEl =
+    document.getElementById("tttXScore");
+
+const oScoreEl =
+    document.getElementById("tttOScore");
+
+const drawScoreEl =
+    document.getElementById("tttDrawScore");
+
+const streakEl =
+    document.getElementById("tttStreak");
+
+const xpEl =
+    document.getElementById("tttXP");
+
+const levelEl =
+    document.getElementById("tttLevel");
+
+const retroEl =
+    document.getElementById("tttRetroMessage");
+
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+const STORAGE_KEY =
+    "nihalCyberCafeTTTDeluxe";
+
+
+let savedData = null;
+
+try{
+
+    savedData =
+        JSON.parse(
+            localStorage.getItem(STORAGE_KEY)
+        );
+
+}catch(error){
+
+    savedData = null;
+
+}
+
+
+if(!savedData){
+
+    savedData = {
+
+        xWins:0,
+        oWins:0,
+        draws:0,
+        streak:0,
+        bestStreak:0,
+        xp:0,
+        history:[],
+        achievements:{}
+
+    };
+
+}
+
+
+/* =========================================================
+   GAME STATE
+========================================================= */
+
+let board =
+    ["","","","","","","","",""];
+
+let currentPlayer =
+    "X";
+
+let gameActive =
+    true;
+
+let gameMode =
+    "computer";
+
+let difficulty =
+    "easy";
+
+let timerSeconds =
+    10;
+
+let timerInterval =
+    null;
+
+let computerThinking =
+    false;
+
+
+/* =========================================================
+   WIN PATTERNS
+========================================================= */
+
+const winningPatterns = [
+
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+
+    [0,4,8],
+    [2,4,6]
+
+];
+
+
+/* =========================================================
+   SOUND ENGINE
+========================================================= */
+
+let soundContext =
+    null;
+
+
+function getSoundContext(){
+
+    if(!soundContext){
+
+        soundContext =
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
+
+    }
+
+    if(soundContext.state === "suspended"){
+
+        soundContext.resume();
+
+    }
+
+    return soundContext;
+
+}
+
+
+function playRetroSound(
+    frequency,
+    duration,
+    type="square"
+){
+
+    try{
+
+        const ctx =
+            getSoundContext();
+
+        const oscillator =
+            ctx.createOscillator();
+
+        const gain =
+            ctx.createGain();
+
+        oscillator.type =
+            type;
+
+        oscillator.frequency.setValueAtTime(
+            frequency,
+            ctx.currentTime
+        );
+
+        gain.gain.setValueAtTime(
+            .05,
+            ctx.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            .001,
+            ctx.currentTime + duration
+        );
+
+        oscillator.connect(gain);
+
+        gain.connect(
+            ctx.destination
+        );
+
+        oscillator.start();
+
+        oscillator.stop(
+            ctx.currentTime + duration
+        );
+
+    }catch(error){
+
+        console.log(
+            "Retro sound unavailable"
+        );
+
+    }
+
+}
+
+
+function playMoveSound(){
+
+    playRetroSound(
+        180,
+        .07
+    );
+
+}
+
+
+function playWinSound(){
+
+    playRetroSound(
+        520,
+        .12
+    );
+
+    setTimeout(
+        function(){
+
+            playRetroSound(
+                760,
+                .18
+            );
+
+        },
+        130
+    );
+
+}
+
+
+function playDrawSound(){
+
+    playRetroSound(
+        260,
+        .18,
+        "triangle"
+    );
+
+}
+
+
+/* =========================================================
+   SAVE
+========================================================= */
+
+function saveTTTData(){
+
+    try{
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(savedData)
+        );
+
+    }catch(error){
+
+        console.log(
+            "Could not save game data."
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   UPDATE UI
+========================================================= */
+
+function updateScoreUI(){
+
+    xScoreEl.textContent =
+        savedData.xWins;
+
+    oScoreEl.textContent =
+        savedData.oWins;
+
+    drawScoreEl.textContent =
+        savedData.draws;
+
+    streakEl.textContent =
+        savedData.streak;
+
+    xpEl.textContent =
+        savedData.xp;
+
+    updateLevel();
+
+    renderHistory();
+
+    renderAchievements();
+
+}
+
+
+function updateLevel(){
+
+    const xp =
+        savedData.xp;
+
+    let level =
+        "ROOKIE";
+
+    if(xp >= 100){
+
+        level =
+            "CYBER LEGEND";
+
+    }else if(xp >= 60){
+
+        level =
+            "MASTER";
+
+    }else if(xp >= 30){
+
+        level =
+            "PRO";
+
+    }else if(xp >= 10){
+
+        level =
+            "PLAYER";
+
+    }
+
+    levelEl.textContent =
+        level;
+
+}
+
+
+/* =========================================================
+   MODE
+========================================================= */
+
+window.setTTTMode =
+function(mode){
+
+    gameMode =
+        mode;
+
+    document
+        .getElementById("tttVsComputer")
+        .classList.toggle(
+            "active",
+            mode === "computer"
+        );
+
+    document
+        .getElementById("tttTwoPlayer")
+        .classList.toggle(
+            "active",
+            mode === "two"
+        );
+
+    resetTicTacToe();
+
+    if(mode === "computer"){
+
+        retroMessage(
+            "MODE: PLAYER VS COMPUTER"
+        );
+
+    }else{
+
+        retroMessage(
+            "MODE: TWO PLAYER"
+        );
+
+    }
+
+};
+
+
+/* =========================================================
+   DIFFICULTY
+========================================================= */
+
+window.setTTTDifficulty =
+function(level){
+
+    difficulty =
+        level;
+
+    document
+        .getElementById("tttEasy")
+        .classList.toggle(
+            "active",
+            level === "easy"
+        );
+
+    document
+        .getElementById("tttMedium")
+        .classList.toggle(
+            "active",
+            level === "medium"
+        );
+
+    document
+        .getElementById("tttHard")
+        .classList.toggle(
+            "active",
+            level === "hard"
+        );
+
+    resetTicTacToe();
+
+    retroMessage(
+        "DIFFICULTY: " +
+        level.toUpperCase()
+    );
+
+};
+
+
+/* =========================================================
+   CELL CLICK
+========================================================= */
+
+cells.forEach(function(cell){
+
+    cell.addEventListener(
+        "click",
+        function(){
+
+            const index =
+                Number(
+                    cell.dataset.index
+                );
+
+            if(!gameActive) return;
+
+            if(computerThinking) return;
+
+            if(board[index] !== "") return;
+
+            if(
+                gameMode === "computer" &&
+                currentPlayer !== "X"
+            ){
+
+                return;
+
+            }
+
+            makeMove(
+                index,
+                currentPlayer
+            );
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   MAKE MOVE
+========================================================= */
+
+function makeMove(
+    index,
+    player
+){
+
+    if(board[index] !== "") return;
+
+    board[index] =
+        player;
+
+    const cell =
+        cells[index];
+
+    cell.textContent =
+        player;
+
+    cell.classList.add(
+        player.toLowerCase()
+    );
+
+    playMoveSound();
+
+    retroMessage(
+        "MOVE: PLAYER " +
+        player
+    );
+
+
+    const result =
+        checkGameResult();
+
+    if(result){
+
+        finishGame(
+            result
+        );
+
+        return;
+
+    }
+
+
+    currentPlayer =
+        player === "X"
+        ? "O"
+        : "X";
+
+
+    resetTurnTimer();
+
+
+    if(
+        gameMode === "computer" &&
+        currentPlayer === "O"
+    ){
+
+        computerMove();
+
+    }else{
+
+        statusEl.textContent =
+            "Turn — " +
+            currentPlayer;
+
+    }
+
+}
+
+
+/* =========================================================
+   GAME RESULT
+========================================================= */
+
+function checkGameResult(){
+
+    for(
+        let i = 0;
+        i < winningPatterns.length;
+        i++
+    ){
+
+        const pattern =
+            winningPatterns[i];
+
+        const a =
+            board[pattern[0]];
+
+        const b =
+            board[pattern[1]];
+
+        const c =
+            board[pattern[2]];
+
+
+        if(
+            a &&
+            a === b &&
+            b === c
+        ){
+
+            pattern.forEach(
+                function(index){
+
+                    cells[index]
+                        .classList.add(
+                            "win"
+                        );
+
+                }
+            );
+
+            return {
+                type:"win",
+                winner:a
+            };
+
+        }
+
+    }
+
+
+    if(
+        board.every(
+            function(value){
+                return value !== "";
+            }
+        )
+    ){
+
+        return {
+            type:"draw"
+        };
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =========================================================
+   FINISH GAME
+========================================================= */
+
+function finishGame(result){
+
+    gameActive =
+        false;
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    if(result.type === "win"){
+
+        const winner =
+            result.winner;
+
+        if(winner === "X"){
+
+            savedData.xWins++;
+
+            savedData.streak++;
+
+            if(
+                savedData.streak >
+                savedData.bestStreak
+            ){
+
+                savedData.bestStreak =
+                    savedData.streak;
+
+            }
+
+
+            savedData.xp +=
+                gameMode === "computer"
+                ? 10
+                : 5;
+
+
+            statusEl.textContent =
+                "🎉 X WINS!";
+
+            retroMessage(
+                "WINNER: X — ACCESS GRANTED!"
+            );
+
+            playWinSound();
+
+        }else{
+
+            savedData.oWins++;
+
+            savedData.streak = 0;
+
+            if(
+                gameMode === "computer"
+            ){
+
+                savedData.xp += 3;
+
+                statusEl.textContent =
+                    "🤖 COMPUTER WINS!";
+
+                retroMessage(
+                    "COMPUTER WINS — TRY AGAIN!"
+                );
+
+            }else{
+
+                statusEl.textContent =
+                    "🎉 O WINS!";
+
+                retroMessage(
+                    "WINNER: O"
+                );
+
+            }
+
+            playWinSound();
+
+        }
+
+
+        addHistory(
+            winner +
+            " WON"
+        );
+
+        checkAchievements();
+
+    }else{
+
+        savedData.draws++;
+
+        savedData.streak =
+            0;
+
+        savedData.xp +=
+            2;
+
+        statusEl.textContent =
+            "🤝 DRAW!";
+
+        retroMessage(
+            "DRAW — GOOD GAME!"
+        );
+
+        playDrawSound();
+
+        addHistory(
+            "DRAW"
+        );
+
+        checkAchievements();
+
+    }
+
+
+    saveTTTData();
+
+    updateScoreUI();
+
+}
+
+
+/* =========================================================
+   COMPUTER MOVE
+========================================================= */
+
+function computerMove(){
+
+    computerThinking =
+        true;
+
+    statusEl.textContent =
+        "🤖 Computer thinking...";
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    setTimeout(
+        function(){
+
+            if(!gameActive){
+
+                computerThinking =
+                    false;
+
+                return;
+
+            }
+
+
+            let move;
+
+
+            if(
+                difficulty === "easy"
+            ){
+
+                move =
+                    randomMove();
+
+            }else if(
+                difficulty === "medium"
+            ){
+
+                move =
+                    Math.random() < .55
+                    ? bestMove()
+                    : randomMove();
+
+            }else{
+
+                move =
+                    bestMove();
+
+            }
+
+
+            computerThinking =
+                false;
+
+            makeMove(
+                move,
+                "O"
+            );
+
+        },
+        450
+    );
+
+}
+
+
+/* =========================================================
+   RANDOM MOVE
+========================================================= */
+
+function randomMove(){
+
+    const empty =
+        [];
+
+    board.forEach(
+        function(value,index){
+
+            if(value === ""){
+
+                empty.push(
+                    index
+                );
+
+            }
+
+        }
+    );
+
+
+    if(!empty.length){
+
+        return 0;
+
+    }
+
+
+    return empty[
+        Math.floor(
+            Math.random() *
+            empty.length
+        )
+    ];
+
+}
+
+
+/* =========================================================
+   SMART MOVE
+========================================================= */
+
+function bestMove(){
+
+    let bestScore =
+        -Infinity;
+
+    let move;
+
+
+    for(
+        let i = 0;
+        i < board.length;
+        i++
+    ){
+
+        if(board[i] === ""){
+
+            board[i] =
+                "O";
+
+            const score =
+                minimax(
+                    board,
+                    0,
+                    false
+                );
+
+            board[i] =
+                "";
+
+            if(
+                score > bestScore
+            ){
+
+                bestScore =
+                    score;
+
+                move =
+                    i;
+
+            }
+
+        }
+
+    }
+
+
+    return move !== undefined
+        ? move
+        : randomMove();
+
+}
+
+
+function minimax(
+    state,
+    depth,
+    maximizing
+){
+
+    const result =
+        miniResult(
+            state
+        );
+
+
+    if(result !== null){
+
+        if(result === "O"){
+
+            return 10 - depth;
+
+        }
+
+        if(result === "X"){
+
+            return depth - 10;
+
+        }
+
+        return 0;
+
+    }
+
+
+    if(maximizing){
+
+        let best =
+            -Infinity;
+
+
+        for(
+            let i = 0;
+            i < 9;
+            i++
+        ){
+
+            if(state[i] === ""){
+
+                state[i] =
+                    "O";
+
+                best =
+                    Math.max(
+                        best,
+                        minimax(
+                            state,
+                            depth + 1,
+                            false
+                        )
+                    );
+
+                state[i] =
+                    "";
+
+            }
+
+        }
+
+
+        return best;
+
+    }else{
+
+        let best =
+            Infinity;
+
+
+        for(
+            let i = 0;
+            i < 9;
+            i++
+        ){
+
+            if(state[i] === ""){
+
+                state[i] =
+                    "X";
+
+                best =
+                    Math.min(
+                        best,
+                        minimax(
+                            state,
+                            depth + 1,
+                            true
+                        )
+                    );
+
+                state[i] =
+                    "";
+
+            }
+
+        }
+
+
+        return best;
+
+    }
+
+}
+
+
+function miniResult(state){
+
+    for(
+        let i = 0;
+        i < winningPatterns.length;
+        i++
+    ){
+
+        const pattern =
+            winningPatterns[i];
+
+        const a =
+            state[pattern[0]];
+
+        const b =
+            state[pattern[1]];
+
+        const c =
+            state[pattern[2]];
+
+
+        if(
+            a &&
+            a === b &&
+            b === c
+        ){
+
+            return a;
+
+        }
+
+    }
+
+
+    if(
+        state.every(
+            function(value){
+                return value !== "";
+            }
+        )
+    ){
+
+        return "DRAW";
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+function resetTurnTimer(){
+
+    clearInterval(
+        timerInterval
+    );
+
+    timerSeconds =
+        10;
+
+    updateTimerUI();
+
+
+    timerInterval =
+        setInterval(
+            function(){
+
+                timerSeconds--;
+
+                updateTimerUI();
+
+
+                if(
+                    timerSeconds <= 0
+                ){
+
+                    clearInterval(
+                        timerInterval
+                    );
+
+                    if(
+                        gameActive
+                    ){
+
+                        autoMove();
+
+                    }
+
+                }
+
+            },
+            1000
+        );
+
+}
+
+
+function updateTimerUI(){
+
+    timerEl.textContent =
+        "TIME: " +
+        timerSeconds;
+
+
+    timerEl.classList.toggle(
+        "warning",
+        timerSeconds <= 3
+    );
+
+}
+
+
+function autoMove(){
+
+    if(!gameActive) return;
+
+
+    const move =
+        gameMode === "computer" &&
+        currentPlayer === "O"
+        ? bestMove()
+        : randomMove();
+
+
+    retroMessage(
+        "TIME OUT — AUTO MOVE"
+    );
+
+
+    makeMove(
+        move,
+        currentPlayer
+    );
+
+}
+
+
+/* =========================================================
+   NEW GAME
+========================================================= */
+
+window.resetTicTacToe =
+function(){
+
+    clearInterval(
+        timerInterval
+    );
+
+    board =
+        ["","","","","","","","",""];
+
+    currentPlayer =
+        "X";
+
+    gameActive =
+        true;
+
+    computerThinking =
+        false;
+
+
+    cells.forEach(
+        function(cell){
+
+            cell.textContent =
+                "";
+
+            cell.className =
+                "ttt-cell";
+
+        }
+    );
+
+
+    statusEl.textContent =
+        gameMode === "computer"
+        ? "Your turn — X"
+        : "Player X turn";
+
+
+    retroMessage(
+        "C:\\CYBERCAFE> NEW GAME READY..."
+    );
+
+
+    resetTurnTimer();
+
+};
+
+
+/* =========================================================
+   RESET SCORES
+========================================================= */
+
+window.resetTTTScores =
+function(){
+
+    const confirmReset =
+        window.confirm(
+            "Reset all Tic Tac Toe scores?"
+        );
+
+
+    if(!confirmReset) return;
+
+
+    savedData = {
+
+        xWins:0,
+        oWins:0,
+        draws:0,
+        streak:0,
+        bestStreak:0,
+        xp:0,
+        history:[],
+        achievements:{}
+
+    };
+
+
+    saveTTTData();
+
+    updateScoreUI();
+
+    resetTicTacToe();
+
+    retroMessage(
+        "SCORES RESET — FRESH START!"
+    );
+
+};
+
+
+/* =========================================================
+   HISTORY
+========================================================= */
+
+function addHistory(result){
+
+    savedData.history.unshift({
+
+        result:result,
+
+        time:
+            new Date().toLocaleString(
+                "en-IN"
+            )
+
+    });
+
+
+    if(
+        savedData.history.length > 10
+    ){
+
+        savedData.history =
+            savedData.history.slice(
+                0,
+                10
+            );
+
+    }
+
+}
+
+
+function renderHistory(){
+
+    const list =
+        document.getElementById(
+            "tttHistoryList"
+        );
+
+
+    if(
+        !savedData.history.length
+    ){
+
+        list.innerHTML =
+            "No matches played yet.";
+
+        return;
+
+    }
+
+
+    list.innerHTML = "";
+
+
+    savedData.history.forEach(
+        function(item){
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+            div.className =
+                "ttt-history-item";
+
+            div.textContent =
+                item.result +
+                " — " +
+                item.time;
+
+            list.appendChild(
+                div
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ACHIEVEMENTS
+========================================================= */
+
+const achievements = [
+
+    {
+        id:"firstWin",
+        title:"🥇 FIRST WIN",
+        text:"Win your first match.",
+        condition:function(){
+            return savedData.xWins >= 1;
+        }
+    },
+
+    {
+        id:"threeWins",
+        title:"🔥 THREE WINS",
+        text:"Win 3 matches.",
+        condition:function(){
+            return savedData.xWins >= 3;
+        }
+    },
+
+    {
+        id:"streak3",
+        title:"🔥 HOT STREAK",
+        text:"Reach a 3-win streak.",
+        condition:function(){
+            return savedData.bestStreak >= 3;
+        }
+    },
+
+    {
+        id:"streak5",
+        title:"⚡ UNSTOPPABLE",
+        text:"Reach a 5-win streak.",
+        condition:function(){
+            return savedData.bestStreak >= 5;
+        }
+    },
+
+    {
+        id:"xp50",
+        title:"⭐ CYBER PLAYER",
+        text:"Earn 50 XP.",
+        condition:function(){
+            return savedData.xp >= 50;
+        }
+    },
+
+    {
+        id:"legend",
+        title:"👑 CYBER LEGEND",
+        text:"Earn 100 XP.",
+        condition:function(){
+            return savedData.xp >= 100;
+        }
+    }
+
+];
+
+
+function checkAchievements(){
+
+    achievements.forEach(
+        function(item){
+
+            if(
+                !savedData.achievements[
+                    item.id
+                ] &&
+                item.condition()
+            ){
+
+                savedData.achievements[
+                    item.id
+                ] = true;
+
+                retroMessage(
+                    "ACHIEVEMENT UNLOCKED: " +
+                    item.title
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+function renderAchievements(){
+
+    const list =
+        document.getElementById(
+            "tttAchievementList"
+        );
+
+
+    list.innerHTML = "";
+
+
+    achievements.forEach(
+        function(item){
+
+            const unlocked =
+                !!savedData.achievements[
+                    item.id
+                ];
+
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+            div.className =
+                "ttt-achievement " +
+                (
+                    unlocked
+                    ? "unlocked"
+                    : "locked"
+                );
+
+
+            div.innerHTML =
+                "<b>" +
+                (
+                    unlocked
+                    ? "✓ "
+                    : "🔒 "
+                ) +
+                item.title +
+                "</b><br>" +
+                item.text;
+
+
+            list.appendChild(
+                div
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   PANELS
+========================================================= */
+
+window.toggleTTTPanel =
+function(panel){
+
+    const history =
+        document.getElementById(
+            "tttHistoryPanel"
+        );
+
+    const achievementsPanel =
+        document.getElementById(
+            "tttAchievementsPanel"
+        );
+
+
+    if(panel === "history"){
+
+        history.classList.toggle(
+            "active"
+        );
+
+        achievementsPanel.classList.remove(
+            "active"
+        );
+
+    }else{
+
+        achievementsPanel.classList.toggle(
+            "active"
+        );
+
+        history.classList.remove(
+            "active"
+        );
+
+    }
+
+};
+
+
+/* =========================================================
+   RETRO CONSOLE
+========================================================= */
+
+function retroMessage(message){
+
+    retroEl.textContent =
+        "C:\\CYBERCAFE> " +
+        message;
+
+}
+
+
+/* =========================================================
+   START MENU — ADD GAME
+========================================================= */
+
+(function(){
+
+    const startRight =
+        document.querySelector(
+            ".start-right"
+        );
+
+
+    if(!startRight) return;
+
+
+    const item =
+        document.createElement(
+            "div"
+        );
+
+
+    item.className =
+        "start-item";
+
+
+    item.innerHTML = `
+        <span class="start-icon">🎮</span>
+        Tic Tac Toe
+    `;
+
+
+    item.addEventListener(
+        "click",
+        function(){
+
+            openXPWindow(
+                "tttWindow"
+            );
+
+            closeStartMenu();
+
+        }
+    );
+
+
+    startRight.appendChild(
+        item
+    );
+
+})();
+
+
+/* =========================================================
+   DESKTOP ICON — ADD A THIRD ICON
+========================================================= */
+
+(function(){
+
+    const iconGrid =
+        document.querySelector(
+            ".icon-grid"
+        );
+
+
+    if(!iconGrid) return;
+
+
+    const icon =
+        document.createElement(
+            "div"
+        );
+
+
+    icon.className =
+        "desktop-icon";
+
+
+    icon.style.cursor =
+        "pointer";
+
+
+    icon.innerHTML = `
+        <div
+            class="icon-img"
+            style="
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-size:30px;
+            "
+        >
+            🎮
+        </div>
+
+        <span>Tic Tac Toe</span>
+    `;
+
+
+    icon.addEventListener(
+        "dblclick",
+        function(){
+
+            openXPWindow(
+                "tttWindow"
+            );
+
+        }
+    );
+
+
+    iconGrid.appendChild(
+        icon
+    );
+
+})();
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+updateScoreUI();
+
+resetTicTacToe();
+
+console.log(
+    "NIHAL CYBER CAFE — TIC TAC TOE DELUXE LOADED ✓"
+);
+
+})();
+
+</script>
 </html>
